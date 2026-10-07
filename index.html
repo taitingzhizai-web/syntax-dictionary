@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<title>構文辞書｜Programming Syntax Dictionary</title>
+<style>
+:root{
+  --bg:#f3f4f6;--surface:#fff;--surface2:#f8fafc;--text:#111827;--sub:#6b7280;
+  --line:#e5e7eb;--accent:#2563eb;--accent2:#dbeafe;--code:#111827;--codeText:#f9fafb;
+  --shadow:0 4px 18px rgba(0,0,0,.07);--radius:18px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;
+  line-height:1.65;padding-bottom:86px}
+button,input{font:inherit}
+button{cursor:pointer}
+.top{
+  position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line)
+}
+.top-inner{max-width:760px;margin:auto;padding:12px 16px 10px}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand-title{font-size:18px;font-weight:800;letter-spacing:.02em}
+.brand-sub{font-size:11px;color:var(--sub)}
+.icon-btn{border:0;background:var(--surface2);width:40px;height:40px;border-radius:13px}
+.wrap{max-width:760px;margin:auto;padding:14px 16px}
+.search{
+  display:flex;align-items:center;gap:9px;background:var(--surface);
+  border:1px solid var(--line);border-radius:15px;padding:0 13px;box-shadow:var(--shadow)
+}
+.search span{font-size:18px}.search input{border:0;outline:0;width:100%;padding:13px 0;background:transparent;color:var(--text);font-size:16px}
+.hero{
+  margin-top:14px;padding:17px;border-radius:20px;background:linear-gradient(135deg,#1d4ed8,#2563eb);
+  color:#fff;box-shadow:var(--shadow)
+}
+.hero h2{margin:0 0 3px;font-size:21px}.hero p{margin:0;font-size:12px;opacity:.9}
+.progress-row{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:12px}
+.progress{height:7px;background:rgba(255,255,255,.25);border-radius:99px;overflow:hidden;margin-top:6px}
+.progress i{display:block;height:100%;background:#fff;width:25%;border-radius:99px}
+.tabs{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:14px 0 8px;
+  position:sticky;top:70px;z-index:20;padding:5px 0;background:var(--bg)
+}
+.tabs button{
+  border:1px solid var(--line);background:var(--surface);color:var(--text);
+  padding:10px 4px;border-radius:13px;font-weight:800;font-size:12px
+}
+.tabs button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 16px}
+.quick button{
+  border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:11px 5px;
+  box-shadow:0 2px 8px rgba(0,0,0,.04);font-size:12px;font-weight:700;color:var(--text)
+}
+.quick small{display:block;color:var(--sub);font-weight:500;margin-top:2px}
+section{display:none}section.active{display:block}
+section>h2{font-size:20px;margin:10px 2px}
+.card{
+  position:relative;background:var(--surface);border:1px solid var(--line);border-radius:17px;
+  margin:10px 0;padding:15px;box-shadow:0 3px 12px rgba(0,0,0,.04)
+}
+.card h3{font-size:16px;margin:0 42px 8px 0}
+.card .label{font-size:10px;color:var(--sub);font-weight:800;letter-spacing:.04em;margin-top:8px}
+.card pre{
+  white-space:pre-wrap;background:var(--code);color:var(--codeText);padding:11px 12px;
+  border-radius:12px;font-size:12px;overflow:auto;margin:5px 0
+}
+.card .fav{
+  position:absolute;right:12px;top:12px;width:34px;height:34px;border:0;border-radius:11px;
+  background:var(--surface2);font-size:17px
+}
+.card .fav.on{background:#fef3c7}
+.hide{display:none!important}
+.empty{display:none;text-align:center;color:var(--sub);padding:40px 10px}
+.bottom{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.95);
+  backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:7px 10px calc(7px + env(safe-area-inset-bottom))
+}
+.bottom-inner{max-width:760px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.bottom button{border:0;background:transparent;color:var(--sub);padding:7px 2px;font-size:10px}
+.bottom button strong{display:block;font-size:19px;line-height:20px;margin-bottom:2px}
+.bottom button.active{color:var(--accent)}
+.toast{
+  position:fixed;left:50%;bottom:92px;transform:translate(-50%,20px);opacity:0;pointer-events:none;
+  background:#111827;color:#fff;padding:9px 14px;border-radius:999px;font-size:12px;z-index:60;transition:.2s
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.dark{
+  --bg:#0b0f14;--surface:#151a21;--surface2:#1c232d;--text:#f3f4f6;--sub:#9ca3af;
+  --line:#29313d;--accent:#60a5fa;--accent2:#1e3a8a;--code:#05070a;--codeText:#f9fafb;
+}
+.dark .top,.dark .bottom{background:rgba(15,18,23,.94)}
+.dark .tabs{background:var(--bg)}
+@media(max-width:520px){
+  .tabs{grid-template-columns:repeat(2,1fr)}
+  .quick{grid-template-columns:repeat(3,1fr)}
+  .wrap{padding-left:13px;padding-right:13px}
+}
+@media(min-width:700px){body{padding-bottom:20px}.bottom{display:none}}
+</style>
+
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#111827">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="構文辞書">
+
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <div>
+        <div class="brand-title">📖 構文辞書</div>
+        <div class="brand-sub">JavaScript・React・Node.js / Express・Python</div>
+      </div>
+      <button class="icon-btn" id="darkBtn" aria-label="ダークモード">🌙</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="search">
+    <span>🔎</span>
+    <input id="q" autocomplete="off" placeholder="構文名・説明・コードを検索">
+  </div>
+
+  <div class="hero">
+    <h2>今日の構文を覚えよう</h2>
+    <p id="todayText">まずはJavaScriptの基本から。</p>
+    <div class="progress-row"><span>学習の入口</span><span id="countText">0件表示</span></div>
+    <div class="progress"><i id="progressBar"></i></div>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button data-id="JavaScript">JS</button>
+    <button data-id="React">React</button>
+    <button data-id="Node.js---Express">Node / Express</button>
+    <button data-id="Python">Python</button>
+  </div>
+
+  <div class="quick">
+    <button id="allBtn">📚<br>全部表示<small>4分野</small></button>
+    <button id="randomBtn">🎲<br>ランダム<small>1構文</small></button>
+    <button id="favBtn">⭐<br>お気に入り<small id="favCount">0件</small></button>
+  </div>
+
+  <div id="sections">
+<section id="JavaScript"><article class="card" data-search="console.log() コンソールに値を表示 console.log('Hello');">
+  <div class="card-head"><h3>console.log()</h3></div>
+  <p>コンソールに値を表示</p>
+  <pre><code>console.log('Hello');</code></pre>
+</article><article class="card" data-search="const あとから再代入しない変数を作る const name = 'Tomo';">
+  <div class="card-head"><h3>const</h3></div>
+  <p>あとから再代入しない変数を作る</p>
+  <pre><code>const name = 'Tomo';</code></pre>
+</article><article class="card" data-search="let あとから値を変更できる変数を作る let count = 0;
+count = 1;">
+  <div class="card-head"><h3>let</h3></div>
+  <p>あとから値を変更できる変数を作る</p>
+  <pre><code>let count = 0;
+count = 1;</code></pre>
+</article><article class="card" data-search="if / else 条件によって処理を分ける if (score >= 60) {
+  console.log('合格');
+} else {
+  console.log('不合格');
+}">
+  <div class="card-head"><h3>if / else</h3></div>
+  <p>条件によって処理を分ける</p>
+  <pre><code>if (score >= 60) {
+  console.log('合格');
+} else {
+  console.log('不合格');
+}</code></pre>
+</article><article class="card" data-search="for 回数を決めて繰り返す for (let i = 0; i < 5; i++) {
+  console.log(i);
+}">
+  <div class="card-head"><h3>for</h3></div>
+  <p>回数を決めて繰り返す</p>
+  <pre><code>for (let i = 0; i < 5; i++) {
+  console.log(i);
+}</code></pre>
+</article><article class="card" data-search="for...of 配列などの値を1つずつ取り出す for (const item of items) {
+  console.log(item);
+}">
+  <div class="card-head"><h3>for...of</h3></div>
+  <p>配列などの値を1つずつ取り出す</p>
+  <pre><code>for (const item of items) {
+  console.log(item);
+}</code></pre>
+</article><article class="card" data-search="function 処理をまとめて関数を作る function add(a, b) {
+  return a + b;
+}">
+  <div class="card-head"><h3>function</h3></div>
+  <p>処理をまとめて関数を作る</p>
+  <pre><code>function add(a, b) {
+  return a + b;
+}</code></pre>
+</article><article class="card" data-search="アロー関数 functionを短く書く方法 const add = (a, b) => {
+  return a + b;
+};">
+  <div class="card-head"><h3>アロー関数</h3></div>
+  <p>functionを短く書く方法</p>
+  <pre><code>const add = (a, b) => {
+  return a + b;
+};</code></pre>
+</article><article class="card" data-search="return 関数の結果を返す function double(n) {
+  return n * 2;
+}">
+  <div class="card-head"><h3>return</h3></div>
+  <p>関数の結果を返す</p>
+  <pre><code>function double(n) {
+  return n * 2;
+}</code></pre>
+</article><article class="card" data-search="配列 [] 複数の値を順番に保存する const fruits = ['りんご', 'バナナ', 'ぶどう'];">
+  <div class="card-head"><h3>配列 []</h3></div>
+  <p>複数の値を順番に保存する</p>
+  <pre><code>const fruits = ['りんご', 'バナナ', 'ぶどう'];</code></pre>
+</article><article class="card" data-search="オブジェクト {} 名前付きでデータをまとめる const user = {
+  name: 'Tomo',
+  age: 18
+};">
+  <div class="card-head"><h3>オブジェクト {}</h3></div>
+  <p>名前付きでデータをまとめる</p>
+  <pre><code>const user = {
+  name: 'Tomo',
+  age: 18
+};</code></pre>
+</article><article class="card" data-search="map() 配列の各要素を変換して新しい配列を作る const nums = [1, 2, 3];
+const doubled = nums.map(n => n * 2);">
+  <div class="card-head"><h3>map()</h3></div>
+  <p>配列の各要素を変換して新しい配列を作る</p>
+  <pre><code>const nums = [1, 2, 3];
+const doubled = nums.map(n => n * 2);</code></pre>
+</article><article class="card" data-search="filter() 条件に合う要素だけを取り出す const nums = [1, 2, 3, 4];
+const even = nums.filter(n => n % 2 === 0);">
+  <div class="card-head"><h3>filter()</h3></div>
+  <p>条件に合う要素だけを取り出す</p>
+  <pre><code>const nums = [1, 2, 3, 4];
+const even = nums.filter(n => n % 2 === 0);</code></pre>
+</article><article class="card" data-search="find() 条件に合う最初の要素を探す const user = users.find(u => u.id === 1);">
+  <div class="card-head"><h3>find()</h3></div>
+  <p>条件に合う最初の要素を探す</p>
+  <pre><code>const user = users.find(u => u.id === 1);</code></pre>
+</article><article class="card" data-search="forEach() 配列の各要素に処理を行う items.forEach(item => {
+  console.log(item);
+});">
+  <div class="card-head"><h3>forEach()</h3></div>
+  <p>配列の各要素に処理を行う</p>
+  <pre><code>items.forEach(item => {
+  console.log(item);
+});</code></pre>
+</article><article class="card" data-search="分割代入 配列やオブジェクトから値を取り出す const { name, age } = user;">
+  <div class="card-head"><h3>分割代入</h3></div>
+  <p>配列やオブジェクトから値を取り出す</p>
+  <pre><code>const { name, age } = user;</code></pre>
+</article><article class="card" data-search="スプレッド構文 ... 配列やオブジェクトを展開する const newArray = [...oldArray, 'new'];">
+  <div class="card-head"><h3>スプレッド構文 ...</h3></div>
+  <p>配列やオブジェクトを展開する</p>
+  <pre><code>const newArray = [...oldArray, 'new'];</code></pre>
+</article><article class="card" data-search="async / await 非同期処理を分かりやすく書く async function getData() {
+  const data = await fetch(url);
+}">
+  <div class="card-head"><h3>async / await</h3></div>
+  <p>非同期処理を分かりやすく書く</p>
+  <pre><code>async function getData() {
+  const data = await fetch(url);
+}</code></pre>
+</article><article class="card" data-search="try / catch エラーが起きたときの処理を書く try {
+  riskyFunction();
+} catch (error) {
+  console.error(error);
+}">
+  <div class="card-head"><h3>try / catch</h3></div>
+  <p>エラーが起きたときの処理を書く</p>
+  <pre><code>try {
+  riskyFunction();
+} catch (error) {
+  console.error(error);
+}</code></pre>
+</article><article class="card" data-search="fetch() APIなどからデータを取得する const response = await fetch('/api/users');">
+  <div class="card-head"><h3>fetch()</h3></div>
+  <p>APIなどからデータを取得する</p>
+  <pre><code>const response = await fetch('/api/users');</code></pre>
+</article><article class="card" data-search="JSON.stringify() JavaScriptのデータをJSON文字列にする const json = JSON.stringify(user);">
+  <div class="card-head"><h3>JSON.stringify()</h3></div>
+  <p>JavaScriptのデータをJSON文字列にする</p>
+  <pre><code>const json = JSON.stringify(user);</code></pre>
+</article><article class="card" data-search="JSON.parse() JSON文字列をJavaScriptのデータに戻す const user = JSON.parse(json);">
+  <div class="card-head"><h3>JSON.parse()</h3></div>
+  <p>JSON文字列をJavaScriptのデータに戻す</p>
+  <pre><code>const user = JSON.parse(json);</code></pre>
+</article><article class="card" data-search="import / export 別ファイルの機能を読み込む・公開する export default function App() {}
+import App from './App';">
+  <div class="card-head"><h3>import / export</h3></div>
+  <p>別ファイルの機能を読み込む・公開する</p>
+  <pre><code>export default function App() {}
+import App from './App';</code></pre>
+</article><article class="card" data-search="=== 値と型の両方が等しいか比較する if (age === 18) {}">
+  <div class="card-head"><h3>===</h3></div>
+  <p>値と型の両方が等しいか比較する</p>
+  <pre><code>if (age === 18) {}</code></pre>
+</article><article class="card" data-search="!== 値または型が等しくないか比較する if (age !== 18) {}">
+  <div class="card-head"><h3>!==</h3></div>
+  <p>値または型が等しくないか比較する</p>
+  <pre><code>if (age !== 18) {}</code></pre>
+</article><article class="card" data-search="&& 両方の条件がtrueならtrue if (age >= 18 && hasId) {}">
+  <div class="card-head"><h3>&&</h3></div>
+  <p>両方の条件がtrueならtrue</p>
+  <pre><code>if (age >= 18 && hasId) {}</code></pre>
+</article><article class="card" data-search="|| どちらか一方がtrueならtrue const name = input || '名無し';">
+  <div class="card-head"><h3>||</h3></div>
+  <p>どちらか一方がtrueならtrue</p>
+  <pre><code>const name = input || '名無し';</code></pre>
+</article><article class="card" data-search="! true / falseを反転する if (!isLogin) {}">
+  <div class="card-head"><h3>!</h3></div>
+  <p>true / falseを反転する</p>
+  <pre><code>if (!isLogin) {}</code></pre>
+</article></section>
+<section id="React"><article class="card" data-search="JSX JavaScriptの中にHTMLのような記述を書く return <h1>Hello React</h1>;">
+  <div class="card-head"><h3>JSX</h3></div>
+  <p>JavaScriptの中にHTMLのような記述を書く</p>
+  <pre><code>return <h1>Hello React</h1>;</code></pre>
+</article><article class="card" data-search="コンポーネント 画面の部品を関数として作る function Header() {
+  return <header>Header</header>;
+}">
+  <div class="card-head"><h3>コンポーネント</h3></div>
+  <p>画面の部品を関数として作る</p>
+  <pre><code>function Header() {
+  return <header>Header</header>;
+}</code></pre>
+</article><article class="card" data-search="export default コンポーネントを他のファイルから使えるようにする export default App;">
+  <div class="card-head"><h3>export default</h3></div>
+  <p>コンポーネントを他のファイルから使えるようにする</p>
+  <pre><code>export default App;</code></pre>
+</article><article class="card" data-search="import 別ファイルのコンポーネントなどを読み込む import App from './App';">
+  <div class="card-head"><h3>import</h3></div>
+  <p>別ファイルのコンポーネントなどを読み込む</p>
+  <pre><code>import App from './App';</code></pre>
+</article><article class="card" data-search="props 親から子コンポーネントへデータを渡す function User({ name }) {
+  return <p>{name}</p>;
+}">
+  <div class="card-head"><h3>props</h3></div>
+  <p>親から子コンポーネントへデータを渡す</p>
+  <pre><code>function User({ name }) {
+  return <p>{name}</p>;
+}</code></pre>
+</article><article class="card" data-search="useState コンポーネントの状態を管理する const [count, setCount] = useState(0);">
+  <div class="card-head"><h3>useState</h3></div>
+  <p>コンポーネントの状態を管理する</p>
+  <pre><code>const [count, setCount] = useState(0);</code></pre>
+</article><article class="card" data-search="onClick クリックされたときに処理を実行する <button onClick={() => setCount(count + 1)}>+1</button>">
+  <div class="card-head"><h3>onClick</h3></div>
+  <p>クリックされたときに処理を実行する</p>
+  <pre><code><button onClick={() => setCount(count + 1)}>+1</button></code></pre>
+</article><article class="card" data-search="onChange 入力欄の値が変わったときに処理する <input onChange={e => setName(e.target.value)} />">
+  <div class="card-head"><h3>onChange</h3></div>
+  <p>入力欄の値が変わったときに処理する</p>
+  <pre><code><input onChange={e => setName(e.target.value)} /></code></pre>
+</article><article class="card" data-search="map() 配列から複数の要素を表示する {users.map(user => <p key={user.id}>{user.name}</p>)}">
+  <div class="card-head"><h3>map()</h3></div>
+  <p>配列から複数の要素を表示する</p>
+  <pre><code>{users.map(user => <p key={user.id}>{user.name}</p>)}</code></pre>
+</article><article class="card" data-search="条件付きレンダリング 条件によって表示する内容を変える {isLogin ? <p>ログイン中</p> : <p>未ログイン</p>}">
+  <div class="card-head"><h3>条件付きレンダリング</h3></div>
+  <p>条件によって表示する内容を変える</p>
+  <pre><code>{isLogin ? <p>ログイン中</p> : <p>未ログイン</p>}</code></pre>
+</article><article class="card" data-search="useEffect 画面表示後などのタイミングで処理する useEffect(() => {
+  console.log('表示された');
+}, []);">
+  <div class="card-head"><h3>useEffect</h3></div>
+  <p>画面表示後などのタイミングで処理する</p>
+  <pre><code>useEffect(() => {
+  console.log('表示された');
+}, []);</code></pre>
+</article><article class="card" data-search="Reactでfetch APIから取得したデータを表示する useEffect(() => {
+  fetch('/api/users')
+    .then(res => res.json())
+    .then(data => setUsers(data));
+}, []);">
+  <div class="card-head"><h3>Reactでfetch</h3></div>
+  <p>APIから取得したデータを表示する</p>
+  <pre><code>useEffect(() => {
+  fetch('/api/users')
+    .then(res => res.json())
+    .then(data => setUsers(data));
+}, []);</code></pre>
+</article><article class="card" data-search="フォーム 入力内容をstateで管理する <input value={name} onChange={e => setName(e.target.value)} />">
+  <div class="card-head"><h3>フォーム</h3></div>
+  <p>入力内容をstateで管理する</p>
+  <pre><code><input value={name} onChange={e => setName(e.target.value)} /></code></pre>
+</article><article class="card" data-search="key mapで作った要素を識別するための値 {items.map(item => <li key={item.id}>{item.name}</li>)}">
+  <div class="card-head"><h3>key</h3></div>
+  <p>mapで作った要素を識別するための値</p>
+  <pre><code>{items.map(item => <li key={item.id}>{item.name}</li>)}</code></pre>
+</article><article class="card" data-search="React Router ページを切り替えるための仕組み <Route path='/users' element={<Users />} />">
+  <div class="card-head"><h3>React Router</h3></div>
+  <p>ページを切り替えるための仕組み</p>
+  <pre><code><Route path='/users' element={<Users />} /></code></pre>
+</article></section>
+<section id="Node.js---Express"><article class="card" data-search="Node.js JavaScriptをブラウザ以外で動かす実行環境 node app.js">
+  <div class="card-head"><h3>Node.js</h3></div>
+  <p>JavaScriptをブラウザ以外で動かす実行環境</p>
+  <pre><code>node app.js</code></pre>
+</article><article class="card" data-search="npm Node.jsのパッケージを管理する npm install express">
+  <div class="card-head"><h3>npm</h3></div>
+  <p>Node.jsのパッケージを管理する</p>
+  <pre><code>npm install express</code></pre>
+</article><article class="card" data-search="require / import モジュールを読み込む import express from 'express';">
+  <div class="card-head"><h3>require / import</h3></div>
+  <p>モジュールを読み込む</p>
+  <pre><code>import express from 'express';</code></pre>
+</article><article class="card" data-search="async / await 非同期処理を待って結果を受け取る const data = await getData();">
+  <div class="card-head"><h3>async / await</h3></div>
+  <p>非同期処理を待って結果を受け取る</p>
+  <pre><code>const data = await getData();</code></pre>
+</article><article class="card" data-search="fs ファイルを操作するNode.js標準モジュール import fs from 'fs';">
+  <div class="card-head"><h3>fs</h3></div>
+  <p>ファイルを操作するNode.js標準モジュール</p>
+  <pre><code>import fs from 'fs';</code></pre>
+</article><article class="card" data-search="path ファイルパスを扱うNode.js標準モジュール import path from 'path';">
+  <div class="card-head"><h3>path</h3></div>
+  <p>ファイルパスを扱うNode.js標準モジュール</p>
+  <pre><code>import path from 'path';</code></pre>
+</article><article class="card" data-search="express() Expressアプリを作成する const app = express();">
+  <div class="card-head"><h3>express()</h3></div>
+  <p>Expressアプリを作成する</p>
+  <pre><code>const app = express();</code></pre>
+</article><article class="card" data-search="app.listen() サーバーを起動して待ち受ける app.listen(3000, () => {
+  console.log('Server started');
+});">
+  <div class="card-head"><h3>app.listen()</h3></div>
+  <p>サーバーを起動して待ち受ける</p>
+  <pre><code>app.listen(3000, () => {
+  console.log('Server started');
+});</code></pre>
+</article><article class="card" data-search="app.get() GETリクエストの処理を書く app.get('/users', (req, res) => {
+  res.json(users);
+});">
+  <div class="card-head"><h3>app.get()</h3></div>
+  <p>GETリクエストの処理を書く</p>
+  <pre><code>app.get('/users', (req, res) => {
+  res.json(users);
+});</code></pre>
+</article><article class="card" data-search="app.post() POSTリクエストの処理を書く app.post('/users', (req, res) => {
+  res.json(req.body);
+});">
+  <div class="card-head"><h3>app.post()</h3></div>
+  <p>POSTリクエストの処理を書く</p>
+  <pre><code>app.post('/users', (req, res) => {
+  res.json(req.body);
+});</code></pre>
+</article><article class="card" data-search="req.params URLのパラメータを取得する app.get('/users/:id', (req, res) => {
+  console.log(req.params.id);
+});">
+  <div class="card-head"><h3>req.params</h3></div>
+  <p>URLのパラメータを取得する</p>
+  <pre><code>app.get('/users/:id', (req, res) => {
+  console.log(req.params.id);
+});</code></pre>
+</article><article class="card" data-search="req.query URLのクエリパラメータを取得する const keyword = req.query.keyword;">
+  <div class="card-head"><h3>req.query</h3></div>
+  <p>URLのクエリパラメータを取得する</p>
+  <pre><code>const keyword = req.query.keyword;</code></pre>
+</article><article class="card" data-search="req.body 送信されたリクエスト本文を取得する const name = req.body.name;">
+  <div class="card-head"><h3>req.body</h3></div>
+  <p>送信されたリクエスト本文を取得する</p>
+  <pre><code>const name = req.body.name;</code></pre>
+</article><article class="card" data-search="res.json() JSON形式でレスポンスを返す res.json({ message: 'OK' });">
+  <div class="card-head"><h3>res.json()</h3></div>
+  <p>JSON形式でレスポンスを返す</p>
+  <pre><code>res.json({ message: 'OK' });</code></pre>
+</article><article class="card" data-search="res.status() HTTPステータスコードを指定する res.status(404).json({ message: 'Not Found' });">
+  <div class="card-head"><h3>res.status()</h3></div>
+  <p>HTTPステータスコードを指定する</p>
+  <pre><code>res.status(404).json({ message: 'Not Found' });</code></pre>
+</article><article class="card" data-search="app.use() ミドルウェアなどを登録する app.use(express.json());">
+  <div class="card-head"><h3>app.use()</h3></div>
+  <p>ミドルウェアなどを登録する</p>
+  <pre><code>app.use(express.json());</code></pre>
+</article><article class="card" data-search="middleware リクエストとレスポンスの間で処理を行う app.use((req, res, next) => {
+  console.log(req.method);
+  next();
+});">
+  <div class="card-head"><h3>middleware</h3></div>
+  <p>リクエストとレスポンスの間で処理を行う</p>
+  <pre><code>app.use((req, res, next) => {
+  console.log(req.method);
+  next();
+});</code></pre>
+</article><article class="card" data-search="Router ルートを分割して管理する const router = express.Router();">
+  <div class="card-head"><h3>Router</h3></div>
+  <p>ルートを分割して管理する</p>
+  <pre><code>const router = express.Router();</code></pre>
+</article><article class="card" data-search="API アプリ同士がデータをやり取りする仕組み GET /api/users">
+  <div class="card-head"><h3>API</h3></div>
+  <p>アプリ同士がデータをやり取りする仕組み</p>
+  <pre><code>GET /api/users</code></pre>
+</article><article class="card" data-search="DB接続 データベースへ接続してデータを扱う const connection = await db.connect();">
+  <div class="card-head"><h3>DB接続</h3></div>
+  <p>データベースへ接続してデータを扱う</p>
+  <pre><code>const connection = await db.connect();</code></pre>
+</article></section>
+<section id="Python"><article class="card" data-search="変数 値を名前付きで保存する name = 'Tomo'
+age = 18">
+  <div class="card-head"><h3>変数</h3></div>
+  <p>値を名前付きで保存する</p>
+  <pre><code>name = 'Tomo'
+age = 18</code></pre>
+</article><article class="card" data-search="print() 画面に値を表示する print('Hello')">
+  <div class="card-head"><h3>print()</h3></div>
+  <p>画面に値を表示する</p>
+  <pre><code>print('Hello')</code></pre>
+</article><article class="card" data-search="input() キーボードから入力を受け取る name = input('名前: ')">
+  <div class="card-head"><h3>input()</h3></div>
+  <p>キーボードから入力を受け取る</p>
+  <pre><code>name = input('名前: ')</code></pre>
+</article><article class="card" data-search="if 条件によって処理を分ける if score >= 60:
+    print('合格')">
+  <div class="card-head"><h3>if</h3></div>
+  <p>条件によって処理を分ける</p>
+  <pre><code>if score >= 60:
+    print('合格')</code></pre>
+</article><article class="card" data-search="elif / else 複数の条件やそれ以外を処理する if score >= 80:
+    print('A')
+elif score >= 60:
+    print('B')
+else:
+    print('C')">
+  <div class="card-head"><h3>elif / else</h3></div>
+  <p>複数の条件やそれ以外を処理する</p>
+  <pre><code>if score >= 80:
+    print('A')
+elif score >= 60:
+    print('B')
+else:
+    print('C')</code></pre>
+</article><article class="card" data-search="for 繰り返し処理を行う for i in range(5):
+    print(i)">
+  <div class="card-head"><h3>for</h3></div>
+  <p>繰り返し処理を行う</p>
+  <pre><code>for i in range(5):
+    print(i)</code></pre>
+</article><article class="card" data-search="while 条件がtrueの間繰り返す while count < 5:
+    count += 1">
+  <div class="card-head"><h3>while</h3></div>
+  <p>条件がtrueの間繰り返す</p>
+  <pre><code>while count < 5:
+    count += 1</code></pre>
+</article><article class="card" data-search="リスト [] 複数の値を順番に保存する fruits = ['りんご', 'バナナ', 'ぶどう']">
+  <div class="card-head"><h3>リスト []</h3></div>
+  <p>複数の値を順番に保存する</p>
+  <pre><code>fruits = ['りんご', 'バナナ', 'ぶどう']</code></pre>
+</article><article class="card" data-search="辞書 {} キーと値をセットで保存する user = {'name': 'Tomo', 'age': 18}">
+  <div class="card-head"><h3>辞書 {}</h3></div>
+  <p>キーと値をセットで保存する</p>
+  <pre><code>user = {'name': 'Tomo', 'age': 18}</code></pre>
+</article><article class="card" data-search="関数 def 処理をまとめて関数を作る def add(a, b):
+    return a + b">
+  <div class="card-head"><h3>関数 def</h3></div>
+  <p>処理をまとめて関数を作る</p>
+  <pre><code>def add(a, b):
+    return a + b</code></pre>
+</article><article class="card" data-search="return 関数の結果を返す def double(n):
+    return n * 2">
+  <div class="card-head"><h3>return</h3></div>
+  <p>関数の結果を返す</p>
+  <pre><code>def double(n):
+    return n * 2</code></pre>
+</article><article class="card" data-search="import 別のモジュールを読み込む import math">
+  <div class="card-head"><h3>import</h3></div>
+  <p>別のモジュールを読み込む</p>
+  <pre><code>import math</code></pre>
+</article><article class="card" data-search="try / except エラーが起きた場合の処理を書く try:
+    x = int(input())
+except ValueError:
+    print('数字を入力してください')">
+  <div class="card-head"><h3>try / except</h3></div>
+  <p>エラーが起きた場合の処理を書く</p>
+  <pre><code>try:
+    x = int(input())
+except ValueError:
+    print('数字を入力してください')</code></pre>
+</article><article class="card" data-search="class クラスを定義する class User:
+    def __init__(self, name):
+        self.name = name">
+  <div class="card-head"><h3>class</h3></div>
+  <p>クラスを定義する</p>
+  <pre><code>class User:
+    def __init__(self, name):
+        self.name = name</code></pre>
+</article><article class="card" data-search="open() ファイルを開く with open('data.txt', 'r', encoding='utf-8') as f:
+    text = f.read()">
+  <div class="card-head"><h3>open()</h3></div>
+  <p>ファイルを開く</p>
+  <pre><code>with open('data.txt', 'r', encoding='utf-8') as f:
+    text = f.read()</code></pre>
+</article></section>
+  </div>
+  <div class="empty" id="empty">🔎<br>見つかりませんでした。<br>別の言葉で検索してみよう。</div>
+</main>
+
+<nav class="bottom">
+  <div class="bottom-inner">
+    <button class="active" data-bottom="home"><strong>⌂</strong>ホーム</button>
+    <button data-bottom="search"><strong>⌕</strong>検索</button>
+    <button data-bottom="random"><strong>✦</strong>ランダム</button>
+    <button data-bottom="fav"><strong>★</strong>お気に入り</button>
+  </div>
+</nav>
+<div class="toast" id="toast"></div>
+
+<script>
+const tabs=[...document.querySelectorAll('.tabs button')];
+const sections=[...document.querySelectorAll('#sections section')];
+const cards=[...document.querySelectorAll('.card')];
+const q=document.getElementById('q');
+const empty=document.getElementById('empty');
+const toast=document.getElementById('toast');
+const favKey='syntax-dictionary-favorites-v2';
+let favorites=JSON.parse(localStorage.getItem(favKey)||'[]');
+let current='JavaScript';
+let allMode=false;
+
+function saveFav(){localStorage.setItem(favKey,JSON.stringify(favorites)); updateFavUI()}
+function updateFavUI(){
+  document.getElementById('favCount').textContent=favorites.length+'件';
+  cards.forEach((c,i)=>{
+    let b=c.querySelector('.fav');
+    if(!b){
+      b=document.createElement('button'); b.className='fav'; b.type='button'; b.textContent='☆';
+      c.appendChild(b);
+      b.addEventListener('click',e=>{
+        e.stopPropagation();
+        const idx=favorites.indexOf(i);
+        if(idx>=0){favorites.splice(idx,1);b.textContent='☆';b.classList.remove('on');showToast('お気に入りから削除')}
+        else{favorites.push(i);b.textContent='★';b.classList.add('on');showToast('お気に入りに追加')}
+        saveFav();
+      });
+    }
+    const on=favorites.includes(i);
+    b.textContent=on?'★':'☆'; b.classList.toggle('on',on);
+  });
+}
+function show(id){
+  current=id; allMode=false;
+  sections.forEach(s=>s.classList.toggle('active',s.id===id));
+  tabs.forEach(b=>b.classList.toggle('active',b.dataset.id===id));
+  q.value='';
+  cards.forEach(c=>c.classList.remove('hide'));
+  empty.style.display='none';
+  updateStats();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showAll(){
+  allMode=true;
+  sections.forEach(s=>s.classList.add('active'));
+  tabs.forEach(b=>b.classList.add('active'));
+  q.value='';
+  cards.forEach(c=>c.classList.remove('hide'));
+  empty.style.display='none';
+  updateStats();
+}
+function search(){
+  const word=q.value.trim().toLowerCase();
+  let visible=0;
+  sections.forEach(s=>{
+    const matches=[...s.querySelectorAll('.card')].filter(c=>{
+      const ok=!word || c.innerText.toLowerCase().includes(word) || (c.dataset.search||'').toLowerCase().includes(word);
+      c.classList.toggle('hide',!ok);
+      if(ok) visible++;
+      return ok;
+    });
+    s.classList.toggle('active', allMode || (matches.length>0 && (s.id===current || !!word)));
+  });
+  empty.style.display=word && visible===0?'block':'none';
+  document.getElementById('countText').textContent=visible+'件表示';
+  document.getElementById('progressBar').style.width=Math.min(100,Math.max(8,visible/cards.length*100))+'%';
+}
+function updateStats(){
+  const visible=allMode?cards.length:document.querySelector('#'+CSS.escape(current))?.querySelectorAll('.card').length||0;
+  document.getElementById('countText').textContent=visible+'件表示';
+  document.getElementById('progressBar').style.width=Math.min(100,Math.max(8,visible/cards.length*100))+'%';
+}
+function randomCard(){
+  const pool=allMode?cards:([...document.querySelector('#'+CSS.escape(current))?.querySelectorAll('.card')||[]]);
+  if(!pool.length)return;
+  const card=pool[Math.floor(Math.random()*pool.length)];
+  sections.forEach(s=>s.classList.remove('active'));
+  const parent=card.closest('section'); parent.classList.add('active');
+  tabs.forEach(b=>b.classList.toggle('active',b.dataset.id===parent.id));
+  allMode=false;
+  card.scrollIntoView({behavior:'smooth',block:'center'});
+  card.animate([{transform:'scale(1)'},{transform:'scale(1.025)'},{transform:'scale(1)'}],{duration:450});
+}
+function showFavorites(){
+  allMode=true;
+  sections.forEach(s=>s.classList.add('active'));
+  tabs.forEach(b=>b.classList.add('active'));
+  cards.forEach((c,i)=>c.classList.toggle('hide',!favorites.includes(i)));
+  q.value='';
+  empty.style.display=favorites.length?'none':'block';
+  updateStats();
+}
+function showToast(msg){
+  toast.textContent=msg; toast.classList.add('show');
+  clearTimeout(showToast.t); showToast.t=setTimeout(()=>toast.classList.remove('show'),1300);
+}
+tabs.forEach(b=>b.addEventListener('click',()=>show(b.dataset.id)));
+q.addEventListener('input',()=>{allMode=false;search()});
+document.getElementById('allBtn').onclick=showAll;
+document.getElementById('randomBtn').onclick=randomCard;
+document.getElementById('favBtn').onclick=showFavorites;
+document.getElementById('darkBtn').onclick=()=>{
+  document.body.classList.toggle('dark');
+  localStorage.setItem('syntax-dictionary-dark',document.body.classList.contains('dark'));
+};
+if(localStorage.getItem('syntax-dictionary-dark')==='true')document.body.classList.add('dark');
+
+document.querySelectorAll('[data-bottom]').forEach(b=>b.addEventListener('click',()=>{
+  const a=b.dataset.bottom;
+  document.querySelectorAll('[data-bottom]').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  if(a==='home'){show('JavaScript')}
+  if(a==='search'){q.focus();window.scrollTo({top:0,behavior:'smooth'})}
+  if(a==='random'){randomCard()}
+  if(a==='fav'){showFavorites()}
+}));
+
+const today=[
+  ['JavaScript','const / let','変数の基本'],
+  ['JavaScript','if / else','条件分岐'],
+  ['JavaScript','map()','配列処理・Reactで重要'],
+  ['React','useState','状態管理'],
+  ['Node.js---Express','app.get()','APIのGET処理'],
+  ['Python','def','関数の基本']
+];
+const day=today[new Date().getDate()%today.length];
+document.getElementById('todayText').textContent=day[0].replace('Node.js---Express','Node.js / Express')+'「'+day[1]+'」｜'+day[2];
+
+updateFavUI(); show('JavaScript');
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  });
+}
+</script>
+
+</body>
+</html>
