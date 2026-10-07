@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<title>構文辞書｜Programming Syntax Dictionary</title>
+<style>
+:root{
+  --bg:#f3f4f6;--surface:#fff;--surface2:#f8fafc;--text:#111827;--sub:#6b7280;
+  --line:#e5e7eb;--accent:#2563eb;--accent2:#dbeafe;--code:#111827;--codeText:#f9fafb;
+  --shadow:0 4px 18px rgba(0,0,0,.07);--radius:18px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;
+  line-height:1.65;padding-bottom:86px}
+button,input{font:inherit}
+button{cursor:pointer}
+.top{
+  position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line)
+}
+.top-inner{max-width:760px;margin:auto;padding:12px 16px 10px}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand-title{font-size:18px;font-weight:800;letter-spacing:.02em}
+.brand-sub{font-size:11px;color:var(--sub)}
+.icon-btn{border:0;background:var(--surface2);width:40px;height:40px;border-radius:13px}
+.wrap{max-width:760px;margin:auto;padding:14px 16px}
+.search{
+  display:flex;align-items:center;gap:9px;background:var(--surface);
+  border:1px solid var(--line);border-radius:15px;padding:0 13px;box-shadow:var(--shadow)
+}
+.search span{font-size:18px}.search input{border:0;outline:0;width:100%;padding:13px 0;background:transparent;color:var(--text);font-size:16px}
+.hero{
+  margin-top:14px;padding:17px;border-radius:20px;background:linear-gradient(135deg,#1d4ed8,#2563eb);
+  color:#fff;box-shadow:var(--shadow)
+}
+.hero h2{margin:0 0 3px;font-size:21px}.hero p{margin:0;font-size:12px;opacity:.9}
+.progress-row{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:12px}
+.progress{height:7px;background:rgba(255,255,255,.25);border-radius:99px;overflow:hidden;margin-top:6px}
+.progress i{display:block;height:100%;background:#fff;width:25%;border-radius:99px}
+.tabs{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:14px 0 8px;
+  position:sticky;top:70px;z-index:20;padding:5px 0;background:var(--bg)
+}
+.tabs button{
+  border:1px solid var(--line);background:var(--surface);color:var(--text);
+  padding:10px 4px;border-radius:13px;font-weight:800;font-size:12px
+}
+.tabs button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 16px}
+.quick button{
+  border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:11px 5px;
+  box-shadow:0 2px 8px rgba(0,0,0,.04);font-size:12px;font-weight:700;color:var(--text)
+}
+.quick small{display:block;color:var(--sub);font-weight:500;margin-top:2px}
+section{display:none}section.active{display:block}
+section>h2{font-size:20px;margin:10px 2px}
+.card{
+  position:relative;background:var(--surface);border:1px solid var(--line);border-radius:17px;
+  margin:10px 0;padding:15px;box-shadow:0 3px 12px rgba(0,0,0,.04)
+}
+.card h3{font-size:16px;margin:0 42px 8px 0}
+.card .label{font-size:10px;color:var(--sub);font-weight:800;letter-spacing:.04em;margin-top:8px}
+.card pre{
+  white-space:pre-wrap;background:var(--code);color:var(--codeText);padding:11px 12px;
+  border-radius:12px;font-size:12px;overflow:auto;margin:5px 0
+}
+.card .fav{
+  position:absolute;right:12px;top:12px;width:34px;height:34px;border:0;border-radius:11px;
+  background:var(--surface2);font-size:17px
+}
+.card .fav.on{background:#fef3c7}
+.hide{display:none!important}
+.empty{display:none;text-align:center;color:var(--sub);padding:40px 10px}
+.bottom{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.95);
+  backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:7px 10px calc(7px + env(safe-area-inset-bottom))
+}
+.bottom-inner{max-width:760px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.bottom button{border:0;background:transparent;color:var(--sub);padding:7px 2px;font-size:10px}
+.bottom button strong{display:block;font-size:19px;line-height:20px;margin-bottom:2px}
+.bottom button.active{color:var(--accent)}
+.toast{
+  position:fixed;left:50%;bottom:92px;transform:translate(-50%,20px);opacity:0;pointer-events:none;
+  background:#111827;color:#fff;padding:9px 14px;border-radius:999px;font-size:12px;z-index:60;transition:.2s
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.dark{
+  --bg:#0b0f14;--surface:#151a21;--surface2:#1c232d;--text:#f3f4f6;--sub:#9ca3af;
+  --line:#29313d;--accent:#60a5fa;--accent2:#1e3a8a;--code:#05070a;--codeText:#f9fafb;
+}
+.dark .top,.dark .bottom{background:rgba(15,18,23,.94)}
+.dark .tabs{background:var(--bg)}
+@media(max-width:520px){
+  .tabs{grid-template-columns:repeat(2,1fr)}
+  .quick{grid-template-columns:repeat(3,1fr)}
+  .wrap{padding-left:13px;padding-right:13px}
+}
+@media(min-width:700px){body{padding-bottom:20px}.bottom{display:none}}
+</style>
+
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#111827">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="構文辞書">
+
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <div>
+        <div class="brand-title">📖 構文辞書</div>
+        <div class="brand-sub">JavaScript・React・Node.js / Express・Python</div>
+      </div>
+      <button class="icon-btn" id="darkBtn" aria-label="ダークモード">🌙</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="search">
+    <span>🔎</span>
+    <input id="q" autocomplete="off" placeholder="構文名・説明・コードを検索">
+  </div>
+
+  <div class="hero">
+    <h2>今日の構文を覚えよう</h2>
+    <p id="todayText">まずはJavaScriptの基本から。</p>
+    <div class="progress-row"><span>学習の入口</span><span id="countText">0件表示</span></div>
+    <div class="progress"><i id="progressBar"></i></div>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button data-id="JavaScript">JS</button>
+    <button data-id="React">React</button>
+    <button data-id="Node.js---Express">Node / Express</button>
+    <button data-id="Python">Python</button>
+  </div>
+
+  <div class="quick">
+    <button id="allBtn">📚<br>全部表示<small>4分野</small></button>
+    <button id="randomBtn">🎲<br>ランダム<small>1構文</small></button>
+    <button id="favBtn">⭐<br>お気に入り<small id="favCount">0件</small></button>
+  </div>
+
+  <div id="sections">
+JavaScript
+React
+Node.js---Express
+Python
+  </div>
+  <div class="empty" id="empty">🔎<br>見つかりませんでした。<br>別の言葉で検索してみよう。</div>
+</main>
+
+<nav class="bottom">
+  <div class="bottom-inner">
+    <button class="active" data-bottom="home"><strong>⌂</strong>ホーム</button>
+    <button data-bottom="search"><strong>⌕</strong>検索</button>
+    <button data-bottom="random"><strong>✦</strong>ランダム</button>
+    <button data-bottom="fav"><strong>★</strong>お気に入り</button>
+  </div>
+</nav>
+<div class="toast" id="toast"></div>
+
+<script>
+const tabs=[...document.querySelectorAll('.tabs button')];
+const sections=[...document.querySelectorAll('#sections section')];
+const cards=[...document.querySelectorAll('.card')];
+const q=document.getElementById('q');
+const empty=document.getElementById('empty');
+const toast=document.getElementById('toast');
+const favKey='syntax-dictionary-favorites-v2';
+let favorites=JSON.parse(localStorage.getItem(favKey)||'[]');
+let current='JavaScript';
+let allMode=false;
+
+function saveFav(){localStorage.setItem(favKey,JSON.stringify(favorites)); updateFavUI()}
+function updateFavUI(){
+  document.getElementById('favCount').textContent=favorites.length+'件';
+  cards.forEach((c,i)=>{
+    let b=c.querySelector('.fav');
+    if(!b){
+      b=document.createElement('button'); b.className='fav'; b.type='button'; b.textContent='☆';
+      c.appendChild(b);
+      b.addEventListener('click',e=>{
+        e.stopPropagation();
+        const idx=favorites.indexOf(i);
+        if(idx>=0){favorites.splice(idx,1);b.textContent='☆';b.classList.remove('on');showToast('お気に入りから削除')}
+        else{favorites.push(i);b.textContent='★';b.classList.add('on');showToast('お気に入りに追加')}
+        saveFav();
+      });
+    }
+    const on=favorites.includes(i);
+    b.textContent=on?'★':'☆'; b.classList.toggle('on',on);
+  });
+}
+function show(id){
+  current=id; allMode=false;
+  sections.forEach(s=>s.classList.toggle('active',s.id===id));
+  tabs.forEach(b=>b.classList.toggle('active',b.dataset.id===id));
+  q.value='';
+  cards.forEach(c=>c.classList.remove('hide'));
+  empty.style.display='none';
+  updateStats();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showAll(){
+  allMode=true;
+  sections.forEach(s=>s.classList.add('active'));
+  tabs.forEach(b=>b.classList.add('active'));
+  q.value='';
+  cards.forEach(c=>c.classList.remove('hide'));
+  empty.style.display='none';
+  updateStats();
+}
+function search(){
+  const word=q.value.trim().toLowerCase();
+  let visible=0;
+  sections.forEach(s=>{
+    const matches=[...s.querySelectorAll('.card')].filter(c=>{
+      const ok=!word || c.innerText.toLowerCase().includes(word) || (c.dataset.search||'').toLowerCase().includes(word);
+      c.classList.toggle('hide',!ok);
+      if(ok) visible++;
+      return ok;
+    });
+    s.classList.toggle('active', allMode || (matches.length>0 && (s.id===current || !!word)));
+  });
+  empty.style.display=word && visible===0?'block':'none';
+  document.getElementById('countText').textContent=visible+'件表示';
+  document.getElementById('progressBar').style.width=Math.min(100,Math.max(8,visible/cards.length*100))+'%';
+}
+function updateStats(){
+  const visible=allMode?cards.length:document.querySelector('#'+CSS.escape(current))?.querySelectorAll('.card').length||0;
+  document.getElementById('countText').textContent=visible+'件表示';
+  document.getElementById('progressBar').style.width=Math.min(100,Math.max(8,visible/cards.length*100))+'%';
+}
+function randomCard(){
+  const pool=allMode?cards:([...document.querySelector('#'+CSS.escape(current))?.querySelectorAll('.card')||[]]);
+  if(!pool.length)return;
+  const card=pool[Math.floor(Math.random()*pool.length)];
+  sections.forEach(s=>s.classList.remove('active'));
+  const parent=card.closest('section'); parent.classList.add('active');
+  tabs.forEach(b=>b.classList.toggle('active',b.dataset.id===parent.id));
+  allMode=false;
+  card.scrollIntoView({behavior:'smooth',block:'center'});
+  card.animate([{transform:'scale(1)'},{transform:'scale(1.025)'},{transform:'scale(1)'}],{duration:450});
+}
+function showFavorites(){
+  allMode=true;
+  sections.forEach(s=>s.classList.add('active'));
+  tabs.forEach(b=>b.classList.add('active'));
+  cards.forEach((c,i)=>c.classList.toggle('hide',!favorites.includes(i)));
+  q.value='';
+  empty.style.display=favorites.length?'none':'block';
+  updateStats();
+}
+function showToast(msg){
+  toast.textContent=msg; toast.classList.add('show');
+  clearTimeout(showToast.t); showToast.t=setTimeout(()=>toast.classList.remove('show'),1300);
+}
+tabs.forEach(b=>b.addEventListener('click',()=>show(b.dataset.id)));
+q.addEventListener('input',()=>{allMode=false;search()});
+document.getElementById('allBtn').onclick=showAll;
+document.getElementById('randomBtn').onclick=randomCard;
+document.getElementById('favBtn').onclick=showFavorites;
+document.getElementById('darkBtn').onclick=()=>{
+  document.body.classList.toggle('dark');
+  localStorage.setItem('syntax-dictionary-dark',document.body.classList.contains('dark'));
+};
+if(localStorage.getItem('syntax-dictionary-dark')==='true')document.body.classList.add('dark');
+
+document.querySelectorAll('[data-bottom]').forEach(b=>b.addEventListener('click',()=>{
+  const a=b.dataset.bottom;
+  document.querySelectorAll('[data-bottom]').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  if(a==='home'){show('JavaScript')}
+  if(a==='search'){q.focus();window.scrollTo({top:0,behavior:'smooth'})}
+  if(a==='random'){randomCard()}
+  if(a==='fav'){showFavorites()}
+}));
+
+const today=[
+  ['JavaScript','const / let','変数の基本'],
+  ['JavaScript','if / else','条件分岐'],
+  ['JavaScript','map()','配列処理・Reactで重要'],
+  ['React','useState','状態管理'],
+  ['Node.js---Express','app.get()','APIのGET処理'],
+  ['Python','def','関数の基本']
+];
+const day=today[new Date().getDate()%today.length];
+document.getElementById('todayText').textContent=day[0].replace('Node.js---Express','Node.js / Express')+'「'+day[1]+'」｜'+day[2];
+
+updateFavUI(); show('JavaScript');
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  });
+}
+</script>
+
+</body>
+</html>
