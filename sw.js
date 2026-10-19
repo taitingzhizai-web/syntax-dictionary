@@ -1,4 +1,4 @@
-const CACHE = "syntax-dictionary-v6";
+const CACHE = "syntax-dictionary-v7";
 
 const APP_SHELL = [
   "./",
@@ -34,7 +34,7 @@ self.addEventListener("activate", (event) => {
       const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
       await Promise.all(windows.map(async (client) => {
         const current = await askVersion(client);
-        if (current === "v6") return;
+        if (current === "v7") return;
         if (client.navigate) {
           try {
             await client.navigate(client.url);

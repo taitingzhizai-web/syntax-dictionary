@@ -58,6 +58,12 @@ button{cursor:pointer}
 .quick small{display:block;color:var(--sub);font-weight:500;margin-top:2px}
 section{display:none}section.active{display:block}
 section>h2{font-size:20px;margin:10px 2px}
+.groups{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 8px}
+.groups button{
+  border:1px solid var(--line);background:var(--surface);color:var(--text);
+  border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800
+}
+h2.group{margin:20px 2px 2px;font-size:13px;font-weight:800;color:var(--accent);letter-spacing:.04em;scroll-margin-top:150px}
 .card{
   position:relative;background:var(--surface);border:1px solid var(--line);border-radius:17px;
   margin:10px 0;padding:15px;box-shadow:0 3px 12px rgba(0,0,0,.04)
@@ -150,21 +156,47 @@ section>h2{font-size:20px;margin:10px 2px}
   </div>
 
   <div id="sections">
-<section id="JavaScript" class="active"><article class="card" data-search="console.log() コンソールに値を表示 console.log('Hello');">
+<section id="JavaScript" class="active">
+<nav class="groups" aria-label="JavaScriptの種類">
+<button type="button" data-group="js-basic">基本</button>
+<button type="button" data-group="js-var">変数</button>
+<button type="button" data-group="js-if">条件分岐</button>
+<button type="button" data-group="js-loop">繰り返し</button>
+<button type="button" data-group="js-fn">関数</button>
+<button type="button" data-group="js-array">配列</button>
+<button type="button" data-group="js-obj">オブジェクト</button>
+<button type="button" data-group="js-text">文字列・数値</button>
+<button type="button" data-group="js-async">非同期処理</button>
+<button type="button" data-group="js-error">エラー処理</button>
+<button type="button" data-group="js-dom">ブラウザ操作</button>
+<button type="button" data-group="js-class">クラス・モジュール</button>
+</nav>
+<h2 class="group" id="js-basic">基本</h2>
+<article class="card" data-search="console.log() コンソールに値を表示 console.log('Hello');">
   <div class="card-head"><h3>console.log()</h3></div>
   <p>コンソールに値を表示</p>
   <pre><code>console.log('Hello');</code></pre>
-</article><article class="card" data-search="const あとから再代入しない変数を作る const name = 'Tomo';">
+</article>
+<article class="card" data-search="コメント プログラムの説明を残す // これはコメント">
+  <div class="card-head"><h3>コメント</h3></div>
+  <p>プログラムの説明を残す</p>
+  <pre><code>// これはコメント</code></pre>
+</article>
+<h2 class="group" id="js-var">変数</h2>
+<article class="card" data-search="const あとから再代入しない変数を作る const name = 'Tomo';">
   <div class="card-head"><h3>const</h3></div>
   <p>あとから再代入しない変数を作る</p>
   <pre><code>const name = 'Tomo';</code></pre>
-</article><article class="card" data-search="let あとから値を変更できる変数を作る let count = 0;
+</article>
+<article class="card" data-search="let あとから値を変更できる変数を作る let count = 0;
 count = 1;">
   <div class="card-head"><h3>let</h3></div>
   <p>あとから値を変更できる変数を作る</p>
   <pre><code>let count = 0;
 count = 1;</code></pre>
-</article><article class="card" data-search="if / else 条件によって処理を分ける if (score >= 60) {
+</article>
+<h2 class="group" id="js-if">条件分岐</h2>
+<article class="card" data-search="if / else 条件によって処理を分ける if (score >= 60) {
   console.log('合格');
 } else {
   console.log('不合格');
@@ -176,150 +208,6 @@ count = 1;</code></pre>
 } else {
   console.log('不合格');
 }</code></pre>
-</article><article class="card" data-search="for 回数を決めて繰り返す for (let i = 0; i < 5; i++) {
-  console.log(i);
-}">
-  <div class="card-head"><h3>for</h3></div>
-  <p>回数を決めて繰り返す</p>
-  <pre><code>for (let i = 0; i < 5; i++) {
-  console.log(i);
-}</code></pre>
-</article><article class="card" data-search="for...of 配列などの値を1つずつ取り出す for (const item of items) {
-  console.log(item);
-}">
-  <div class="card-head"><h3>for...of</h3></div>
-  <p>配列などの値を1つずつ取り出す</p>
-  <pre><code>for (const item of items) {
-  console.log(item);
-}</code></pre>
-</article><article class="card" data-search="function 処理をまとめて関数を作る function add(a, b) {
-  return a + b;
-}">
-  <div class="card-head"><h3>function</h3></div>
-  <p>処理をまとめて関数を作る</p>
-  <pre><code>function add(a, b) {
-  return a + b;
-}</code></pre>
-</article><article class="card" data-search="アロー関数 functionを短く書く方法 const add = (a, b) => {
-  return a + b;
-};">
-  <div class="card-head"><h3>アロー関数</h3></div>
-  <p>functionを短く書く方法</p>
-  <pre><code>const add = (a, b) => {
-  return a + b;
-};</code></pre>
-</article><article class="card" data-search="return 関数の結果を返す function double(n) {
-  return n * 2;
-}">
-  <div class="card-head"><h3>return</h3></div>
-  <p>関数の結果を返す</p>
-  <pre><code>function double(n) {
-  return n * 2;
-}</code></pre>
-</article><article class="card" data-search="配列 [] 複数の値を順番に保存する const fruits = ['りんご', 'バナナ', 'ぶどう'];">
-  <div class="card-head"><h3>配列 []</h3></div>
-  <p>複数の値を順番に保存する</p>
-  <pre><code>const fruits = ['りんご', 'バナナ', 'ぶどう'];</code></pre>
-</article><article class="card" data-search="オブジェクト {} 名前付きでデータをまとめる const user = {
-  name: 'Tomo',
-  age: 18
-};">
-  <div class="card-head"><h3>オブジェクト {}</h3></div>
-  <p>名前付きでデータをまとめる</p>
-  <pre><code>const user = {
-  name: 'Tomo',
-  age: 18
-};</code></pre>
-</article><article class="card" data-search="map() 配列の各要素を変換して新しい配列を作る const nums = [1, 2, 3];
-const doubled = nums.map(n => n * 2);">
-  <div class="card-head"><h3>map()</h3></div>
-  <p>配列の各要素を変換して新しい配列を作る</p>
-  <pre><code>const nums = [1, 2, 3];
-const doubled = nums.map(n => n * 2);</code></pre>
-</article><article class="card" data-search="filter() 条件に合う要素だけを取り出す const nums = [1, 2, 3, 4];
-const even = nums.filter(n => n % 2 === 0);">
-  <div class="card-head"><h3>filter()</h3></div>
-  <p>条件に合う要素だけを取り出す</p>
-  <pre><code>const nums = [1, 2, 3, 4];
-const even = nums.filter(n => n % 2 === 0);</code></pre>
-</article><article class="card" data-search="find() 条件に合う最初の要素を探す const user = users.find(u => u.id === 1);">
-  <div class="card-head"><h3>find()</h3></div>
-  <p>条件に合う最初の要素を探す</p>
-  <pre><code>const user = users.find(u => u.id === 1);</code></pre>
-</article><article class="card" data-search="forEach() 配列の各要素に処理を行う items.forEach(item => {
-  console.log(item);
-});">
-  <div class="card-head"><h3>forEach()</h3></div>
-  <p>配列の各要素に処理を行う</p>
-  <pre><code>items.forEach(item => {
-  console.log(item);
-});</code></pre>
-</article><article class="card" data-search="分割代入 配列やオブジェクトから値を取り出す const { name, age } = user;">
-  <div class="card-head"><h3>分割代入</h3></div>
-  <p>配列やオブジェクトから値を取り出す</p>
-  <pre><code>const { name, age } = user;</code></pre>
-</article><article class="card" data-search="スプレッド構文 ... 配列やオブジェクトを展開する const newArray = [...oldArray, 'new'];">
-  <div class="card-head"><h3>スプレッド構文 ...</h3></div>
-  <p>配列やオブジェクトを展開する</p>
-  <pre><code>const newArray = [...oldArray, 'new'];</code></pre>
-</article><article class="card" data-search="async / await 非同期処理を分かりやすく書く async function getData() {
-  const data = await fetch(url);
-}">
-  <div class="card-head"><h3>async / await</h3></div>
-  <p>非同期処理を分かりやすく書く</p>
-  <pre><code>async function getData() {
-  const data = await fetch(url);
-}</code></pre>
-</article><article class="card" data-search="try / catch エラーが起きたときの処理を書く try {
-  riskyFunction();
-} catch (error) {
-  console.error(error);
-}">
-  <div class="card-head"><h3>try / catch</h3></div>
-  <p>エラーが起きたときの処理を書く</p>
-  <pre><code>try {
-  riskyFunction();
-} catch (error) {
-  console.error(error);
-}</code></pre>
-</article><article class="card" data-search="fetch() APIなどからデータを取得する const response = await fetch('/api/users');">
-  <div class="card-head"><h3>fetch()</h3></div>
-  <p>APIなどからデータを取得する</p>
-  <pre><code>const response = await fetch('/api/users');</code></pre>
-</article><article class="card" data-search="JSON.stringify() JavaScriptのデータをJSON文字列にする const json = JSON.stringify(user);">
-  <div class="card-head"><h3>JSON.stringify()</h3></div>
-  <p>JavaScriptのデータをJSON文字列にする</p>
-  <pre><code>const json = JSON.stringify(user);</code></pre>
-</article><article class="card" data-search="JSON.parse() JSON文字列をJavaScriptのデータに戻す const user = JSON.parse(json);">
-  <div class="card-head"><h3>JSON.parse()</h3></div>
-  <p>JSON文字列をJavaScriptのデータに戻す</p>
-  <pre><code>const user = JSON.parse(json);</code></pre>
-</article><article class="card" data-search="import / export 別ファイルの機能を読み込む・公開する export default function App() {}
-import App from './App';">
-  <div class="card-head"><h3>import / export</h3></div>
-  <p>別ファイルの機能を読み込む・公開する</p>
-  <pre><code>export default function App() {}
-import App from './App';</code></pre>
-</article><article class="card" data-search="=== 値と型の両方が等しいか比較する if (age === 18) {}">
-  <div class="card-head"><h3>===</h3></div>
-  <p>値と型の両方が等しいか比較する</p>
-  <pre><code>if (age === 18) {}</code></pre>
-</article><article class="card" data-search="!== 値または型が等しくないか比較する if (age !== 18) {}">
-  <div class="card-head"><h3>!==</h3></div>
-  <p>値または型が等しくないか比較する</p>
-  <pre><code>if (age !== 18) {}</code></pre>
-</article><article class="card" data-search="&& 両方の条件がtrueならtrue if (age >= 18 && hasId) {}">
-  <div class="card-head"><h3>&&</h3></div>
-  <p>両方の条件がtrueならtrue</p>
-  <pre><code>if (age >= 18 && hasId) {}</code></pre>
-</article><article class="card" data-search="|| どちらか一方がtrueならtrue const name = input || '名無し';">
-  <div class="card-head"><h3>||</h3></div>
-  <p>どちらか一方がtrueならtrue</p>
-  <pre><code>const name = input || '名無し';</code></pre>
-</article><article class="card" data-search="! true / falseを反転する if (!isLogin) {}">
-  <div class="card-head"><h3>!</h3></div>
-  <p>true / falseを反転する</p>
-  <pre><code>if (!isLogin) {}</code></pre>
 </article>
 <article class="card" data-search="switch 値によって処理を分ける switch (color) { case 'red': console.log('赤'); break; default: console.log('その他'); }">
   <div class="card-head"><h3>switch</h3></div>
@@ -330,6 +218,60 @@ import App from './App';</code></pre>
     break;
   default:
     console.log('その他');
+}</code></pre>
+</article>
+<article class="card" data-search="三項演算子 条件で2つの値を短く切り替える const label = score &gt;= 60 ? '合格' : '不合格';">
+  <div class="card-head"><h3>三項演算子</h3></div>
+  <p>条件で2つの値を短く切り替える</p>
+  <pre><code>const label = score &gt;= 60 ? '合格' : '不合格';</code></pre>
+</article>
+<article class="card" data-search="=== 値と型の両方が等しいか比較する if (age === 18) {}">
+  <div class="card-head"><h3>===</h3></div>
+  <p>値と型の両方が等しいか比較する</p>
+  <pre><code>if (age === 18) {}</code></pre>
+</article>
+<article class="card" data-search="!== 値または型が等しくないか比較する if (age !== 18) {}">
+  <div class="card-head"><h3>!==</h3></div>
+  <p>値または型が等しくないか比較する</p>
+  <pre><code>if (age !== 18) {}</code></pre>
+</article>
+<article class="card" data-search="&& 両方の条件がtrueならtrue if (age >= 18 && hasId) {}">
+  <div class="card-head"><h3>&&</h3></div>
+  <p>両方の条件がtrueならtrue</p>
+  <pre><code>if (age >= 18 && hasId) {}</code></pre>
+</article>
+<article class="card" data-search="|| どちらか一方がtrueならtrue const name = input || '名無し';">
+  <div class="card-head"><h3>||</h3></div>
+  <p>どちらか一方がtrueならtrue</p>
+  <pre><code>const name = input || '名無し';</code></pre>
+</article>
+<article class="card" data-search="! true / falseを反転する if (!isLogin) {}">
+  <div class="card-head"><h3>!</h3></div>
+  <p>true / falseを反転する</p>
+  <pre><code>if (!isLogin) {}</code></pre>
+</article>
+<article class="card" data-search="?? nullかundefinedのときだけ代わりの値を使う const name = input ?? '名無し';">
+  <div class="card-head"><h3>??</h3></div>
+  <p>nullかundefinedのときだけ代わりの値を使う</p>
+  <pre><code>const name = input ?? '名無し';</code></pre>
+</article>
+<h2 class="group" id="js-loop">繰り返し</h2>
+<article class="card" data-search="for 回数を決めて繰り返す for (let i = 0; i < 5; i++) {
+  console.log(i);
+}">
+  <div class="card-head"><h3>for</h3></div>
+  <p>回数を決めて繰り返す</p>
+  <pre><code>for (let i = 0; i < 5; i++) {
+  console.log(i);
+}</code></pre>
+</article>
+<article class="card" data-search="for...of 配列などの値を1つずつ取り出す for (const item of items) {
+  console.log(item);
+}">
+  <div class="card-head"><h3>for...of</h3></div>
+  <p>配列などの値を1つずつ取り出す</p>
+  <pre><code>for (const item of items) {
+  console.log(item);
 }</code></pre>
 </article>
 <article class="card" data-search="while 条件がtrueの間繰り返す let count = 0; while (count &lt; 3) { console.log(count); count++; }">
@@ -349,30 +291,74 @@ while (count &lt; 3) {
   if (n &gt; 10) break;
 }</code></pre>
 </article>
-<article class="card" data-search="三項演算子 条件で2つの値を短く切り替える const label = score &gt;= 60 ? '合格' : '不合格';">
-  <div class="card-head"><h3>三項演算子</h3></div>
-  <p>条件で2つの値を短く切り替える</p>
-  <pre><code>const label = score &gt;= 60 ? '合格' : '不合格';</code></pre>
+<article class="card" data-search="forEach() 配列の各要素に処理を行う items.forEach(item => {
+  console.log(item);
+});">
+  <div class="card-head"><h3>forEach()</h3></div>
+  <p>配列の各要素に処理を行う</p>
+  <pre><code>items.forEach(item => {
+  console.log(item);
+});</code></pre>
 </article>
-<article class="card" data-search="テンプレートリテラル 文字列の中に変数を埋め込む const text = `こんにちは、${name}`;">
-  <div class="card-head"><h3>テンプレートリテラル</h3></div>
-  <p>文字列の中に変数を埋め込む</p>
-  <pre><code>const text = `こんにちは、${name}`;</code></pre>
+<h2 class="group" id="js-fn">関数</h2>
+<article class="card" data-search="function 処理をまとめて関数を作る function add(a, b) {
+  return a + b;
+}">
+  <div class="card-head"><h3>function</h3></div>
+  <p>処理をまとめて関数を作る</p>
+  <pre><code>function add(a, b) {
+  return a + b;
+}</code></pre>
 </article>
-<article class="card" data-search="オプショナルチェーン ?. 途中がnullでもエラーにせず値を取り出す const city = user?.address?.city;">
-  <div class="card-head"><h3>オプショナルチェーン ?.</h3></div>
-  <p>途中がnullでもエラーにせず値を取り出す</p>
-  <pre><code>const city = user?.address?.city;</code></pre>
+<article class="card" data-search="アロー関数 functionを短く書く方法 const add = (a, b) => {
+  return a + b;
+};">
+  <div class="card-head"><h3>アロー関数</h3></div>
+  <p>functionを短く書く方法</p>
+  <pre><code>const add = (a, b) => {
+  return a + b;
+};</code></pre>
 </article>
-<article class="card" data-search="?? nullかundefinedのときだけ代わりの値を使う const name = input ?? '名無し';">
-  <div class="card-head"><h3>??</h3></div>
-  <p>nullかundefinedのときだけ代わりの値を使う</p>
-  <pre><code>const name = input ?? '名無し';</code></pre>
+<article class="card" data-search="return 関数の結果を返す function double(n) {
+  return n * 2;
+}">
+  <div class="card-head"><h3>return</h3></div>
+  <p>関数の結果を返す</p>
+  <pre><code>function double(n) {
+  return n * 2;
+}</code></pre>
 </article>
-<article class="card" data-search="typeof 値の型を文字列で調べる typeof age">
-  <div class="card-head"><h3>typeof</h3></div>
-  <p>値の型を文字列で調べる</p>
-  <pre><code>typeof age</code></pre>
+<article class="card" data-search="デフォルト引数 引数が渡されないときの初期値を決める function greet(name = 'ゲスト') { return name; }">
+  <div class="card-head"><h3>デフォルト引数</h3></div>
+  <p>引数が渡されないときの初期値を決める</p>
+  <pre><code>function greet(name = 'ゲスト') {
+  return name;
+}</code></pre>
+</article>
+<h2 class="group" id="js-array">配列</h2>
+<article class="card" data-search="配列 [] 複数の値を順番に保存する const fruits = ['りんご', 'バナナ', 'ぶどう'];">
+  <div class="card-head"><h3>配列 []</h3></div>
+  <p>複数の値を順番に保存する</p>
+  <pre><code>const fruits = ['りんご', 'バナナ', 'ぶどう'];</code></pre>
+</article>
+<article class="card" data-search="map() 配列の各要素を変換して新しい配列を作る const nums = [1, 2, 3];
+const doubled = nums.map(n => n * 2);">
+  <div class="card-head"><h3>map()</h3></div>
+  <p>配列の各要素を変換して新しい配列を作る</p>
+  <pre><code>const nums = [1, 2, 3];
+const doubled = nums.map(n => n * 2);</code></pre>
+</article>
+<article class="card" data-search="filter() 条件に合う要素だけを取り出す const nums = [1, 2, 3, 4];
+const even = nums.filter(n => n % 2 === 0);">
+  <div class="card-head"><h3>filter()</h3></div>
+  <p>条件に合う要素だけを取り出す</p>
+  <pre><code>const nums = [1, 2, 3, 4];
+const even = nums.filter(n => n % 2 === 0);</code></pre>
+</article>
+<article class="card" data-search="find() 条件に合う最初の要素を探す const user = users.find(u => u.id === 1);">
+  <div class="card-head"><h3>find()</h3></div>
+  <p>条件に合う最初の要素を探す</p>
+  <pre><code>const user = users.find(u => u.id === 1);</code></pre>
 </article>
 <article class="card" data-search="push() 配列の末尾に値を追加する fruits.push('みかん');">
   <div class="card-head"><h3>push()</h3></div>
@@ -399,6 +385,74 @@ while (count &lt; 3) {
   <p>配列の一部を取り出して新しい配列を作る</p>
   <pre><code>items.slice(0, 2)</code></pre>
 </article>
+<h2 class="group" id="js-obj">オブジェクト</h2>
+<article class="card" data-search="オブジェクト {} 名前付きでデータをまとめる const user = {
+  name: 'Tomo',
+  age: 18
+};">
+  <div class="card-head"><h3>オブジェクト {}</h3></div>
+  <p>名前付きでデータをまとめる</p>
+  <pre><code>const user = {
+  name: 'Tomo',
+  age: 18
+};</code></pre>
+</article>
+<article class="card" data-search="分割代入 配列やオブジェクトから値を取り出す const { name, age } = user;">
+  <div class="card-head"><h3>分割代入</h3></div>
+  <p>配列やオブジェクトから値を取り出す</p>
+  <pre><code>const { name, age } = user;</code></pre>
+</article>
+<article class="card" data-search="スプレッド構文 ... 配列やオブジェクトを展開する const newArray = [...oldArray, 'new'];">
+  <div class="card-head"><h3>スプレッド構文 ...</h3></div>
+  <p>配列やオブジェクトを展開する</p>
+  <pre><code>const newArray = [...oldArray, 'new'];</code></pre>
+</article>
+<article class="card" data-search="オプショナルチェーン ?. 途中がnullでもエラーにせず値を取り出す const city = user?.address?.city;">
+  <div class="card-head"><h3>オプショナルチェーン ?.</h3></div>
+  <p>途中がnullでもエラーにせず値を取り出す</p>
+  <pre><code>const city = user?.address?.city;</code></pre>
+</article>
+<article class="card" data-search="Object.keys() オブジェクトのキーを配列にする Object.keys(user)">
+  <div class="card-head"><h3>Object.keys()</h3></div>
+  <p>オブジェクトのキーを配列にする</p>
+  <pre><code>Object.keys(user)</code></pre>
+</article>
+<h2 class="group" id="js-text">文字列・数値</h2>
+<article class="card" data-search="テンプレートリテラル 文字列の中に変数を埋め込む const text = `こんにちは、${name}`;">
+  <div class="card-head"><h3>テンプレートリテラル</h3></div>
+  <p>文字列の中に変数を埋め込む</p>
+  <pre><code>const text = `こんにちは、${name}`;</code></pre>
+</article>
+<article class="card" data-search="typeof 値の型を文字列で調べる typeof age">
+  <div class="card-head"><h3>typeof</h3></div>
+  <p>値の型を文字列で調べる</p>
+  <pre><code>typeof age</code></pre>
+</article>
+<article class="card" data-search="parseInt() 文字列を整数に変換する parseInt('18', 10)">
+  <div class="card-head"><h3>parseInt()</h3></div>
+  <p>文字列を整数に変換する</p>
+  <pre><code>parseInt('18', 10)</code></pre>
+</article>
+<h2 class="group" id="js-async">非同期処理</h2>
+<article class="card" data-search="async / await 非同期処理を分かりやすく書く async function getData() {
+  const data = await fetch(url);
+}">
+  <div class="card-head"><h3>async / await</h3></div>
+  <p>非同期処理を分かりやすく書く</p>
+  <pre><code>async function getData() {
+  const data = await fetch(url);
+}</code></pre>
+</article>
+<article class="card" data-search="Promise 非同期処理の結果を表すオブジェクト const result = await Promise.resolve('OK');">
+  <div class="card-head"><h3>Promise</h3></div>
+  <p>非同期処理の結果を表すオブジェクト</p>
+  <pre><code>const result = await Promise.resolve('OK');</code></pre>
+</article>
+<article class="card" data-search="fetch() APIなどからデータを取得する const response = await fetch('/api/users');">
+  <div class="card-head"><h3>fetch()</h3></div>
+  <p>APIなどからデータを取得する</p>
+  <pre><code>const response = await fetch('/api/users');</code></pre>
+</article>
 <article class="card" data-search="setTimeout() 指定した時間のあとで処理を実行する setTimeout(() =&gt; { console.log('後で実行'); }, 1000);">
   <div class="card-head"><h3>setTimeout()</h3></div>
   <p>指定した時間のあとで処理を実行する</p>
@@ -406,11 +460,36 @@ while (count &lt; 3) {
   console.log('後で実行');
 }, 1000);</code></pre>
 </article>
-<article class="card" data-search="Promise 非同期処理の結果を表すオブジェクト const result = await Promise.resolve('OK');">
-  <div class="card-head"><h3>Promise</h3></div>
-  <p>非同期処理の結果を表すオブジェクト</p>
-  <pre><code>const result = await Promise.resolve('OK');</code></pre>
+<article class="card" data-search="JSON.stringify() JavaScriptのデータをJSON文字列にする const json = JSON.stringify(user);">
+  <div class="card-head"><h3>JSON.stringify()</h3></div>
+  <p>JavaScriptのデータをJSON文字列にする</p>
+  <pre><code>const json = JSON.stringify(user);</code></pre>
 </article>
+<article class="card" data-search="JSON.parse() JSON文字列をJavaScriptのデータに戻す const user = JSON.parse(json);">
+  <div class="card-head"><h3>JSON.parse()</h3></div>
+  <p>JSON文字列をJavaScriptのデータに戻す</p>
+  <pre><code>const user = JSON.parse(json);</code></pre>
+</article>
+<h2 class="group" id="js-error">エラー処理</h2>
+<article class="card" data-search="try / catch エラーが起きたときの処理を書く try {
+  riskyFunction();
+} catch (error) {
+  console.error(error);
+}">
+  <div class="card-head"><h3>try / catch</h3></div>
+  <p>エラーが起きたときの処理を書く</p>
+  <pre><code>try {
+  riskyFunction();
+} catch (error) {
+  console.error(error);
+}</code></pre>
+</article>
+<article class="card" data-search="throw 自分でエラーを発生させる throw new Error('失敗しました');">
+  <div class="card-head"><h3>throw</h3></div>
+  <p>自分でエラーを発生させる</p>
+  <pre><code>throw new Error('失敗しました');</code></pre>
+</article>
+<h2 class="group" id="js-dom">ブラウザ操作</h2>
 <article class="card" data-search="addEventListener() クリックなどの出来事に処理を登録する button.addEventListener('click', () =&gt; { console.log('クリック'); });">
   <div class="card-head"><h3>addEventListener()</h3></div>
   <p>クリックなどの出来事に処理を登録する</p>
@@ -423,6 +502,13 @@ while (count &lt; 3) {
   <p>CSSの書き方で要素を1つ取得する</p>
   <pre><code>const el = document.querySelector('.card');</code></pre>
 </article>
+<article class="card" data-search="localStorage ブラウザに文字列を保存する localStorage.setItem('name', 'Tomo'); const name = localStorage.getItem('name');">
+  <div class="card-head"><h3>localStorage</h3></div>
+  <p>ブラウザに文字列を保存する</p>
+  <pre><code>localStorage.setItem('name', 'Tomo');
+const name = localStorage.getItem('name');</code></pre>
+</article>
+<h2 class="group" id="js-class">クラス・モジュール</h2>
 <article class="card" data-search="class データと処理をまとめた設計図を作る class User { constructor(name) { this.name = name; } }">
   <div class="card-head"><h3>class</h3></div>
   <p>データと処理をまとめた設計図を作る</p>
@@ -432,38 +518,12 @@ while (count &lt; 3) {
   }
 }</code></pre>
 </article>
-<article class="card" data-search="デフォルト引数 引数が渡されないときの初期値を決める function greet(name = 'ゲスト') { return name; }">
-  <div class="card-head"><h3>デフォルト引数</h3></div>
-  <p>引数が渡されないときの初期値を決める</p>
-  <pre><code>function greet(name = 'ゲスト') {
-  return name;
-}</code></pre>
-</article>
-<article class="card" data-search="localStorage ブラウザに文字列を保存する localStorage.setItem('name', 'Tomo'); const name = localStorage.getItem('name');">
-  <div class="card-head"><h3>localStorage</h3></div>
-  <p>ブラウザに文字列を保存する</p>
-  <pre><code>localStorage.setItem('name', 'Tomo');
-const name = localStorage.getItem('name');</code></pre>
-</article>
-<article class="card" data-search="throw 自分でエラーを発生させる throw new Error('失敗しました');">
-  <div class="card-head"><h3>throw</h3></div>
-  <p>自分でエラーを発生させる</p>
-  <pre><code>throw new Error('失敗しました');</code></pre>
-</article>
-<article class="card" data-search="Object.keys() オブジェクトのキーを配列にする Object.keys(user)">
-  <div class="card-head"><h3>Object.keys()</h3></div>
-  <p>オブジェクトのキーを配列にする</p>
-  <pre><code>Object.keys(user)</code></pre>
-</article>
-<article class="card" data-search="parseInt() 文字列を整数に変換する parseInt('18', 10)">
-  <div class="card-head"><h3>parseInt()</h3></div>
-  <p>文字列を整数に変換する</p>
-  <pre><code>parseInt('18', 10)</code></pre>
-</article>
-<article class="card" data-search="コメント プログラムの説明を残す // これはコメント">
-  <div class="card-head"><h3>コメント</h3></div>
-  <p>プログラムの説明を残す</p>
-  <pre><code>// これはコメント</code></pre>
+<article class="card" data-search="import / export 別ファイルの機能を読み込む・公開する export default function App() {}
+import App from './App';">
+  <div class="card-head"><h3>import / export</h3></div>
+  <p>別ファイルの機能を読み込む・公開する</p>
+  <pre><code>export default function App() {}
+import App from './App';</code></pre>
 </article>
 </section>
 <section id="React"><article class="card" data-search="JSX JavaScriptの中にHTMLのような記述を書く return <h1>Hello React</h1>;">
@@ -1095,7 +1155,7 @@ const cards=[...document.querySelectorAll('.card')];
 const q=document.getElementById('q');
 const empty=document.getElementById('empty');
 const toast=document.getElementById('toast');
-const favKey='syntax-dictionary-favorites-v2';
+const favKey='syntax-dictionary-favorites-v3';
 let favorites=JSON.parse(localStorage.getItem(favKey)||'[]');
 let current='JavaScript';
 let allMode=false;
@@ -1120,6 +1180,17 @@ function updateFavUI(){
     b.textContent=on?'★':'☆'; b.classList.toggle('on',on);
   });
 }
+function updateGroups(){
+  document.querySelectorAll('h2.group').forEach(h=>{
+    let n=h.nextElementSibling, any=false;
+    while(n && !n.classList.contains('group')){
+      if(n.classList.contains('card') && !n.classList.contains('hide')) any=true;
+      n=n.nextElementSibling;
+    }
+    h.classList.toggle('hide', !any);
+    document.querySelector('[data-group="'+h.id+'"]')?.classList.toggle('hide', !any);
+  });
+}
 function show(id){
   current=id; allMode=false;
   sections.forEach(s=>s.classList.toggle('active',s.id===id));
@@ -1127,6 +1198,7 @@ function show(id){
   q.value='';
   cards.forEach(c=>c.classList.remove('hide'));
   empty.style.display='none';
+  updateGroups();
   updateStats();
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -1137,6 +1209,7 @@ function showAll(){
   q.value='';
   cards.forEach(c=>c.classList.remove('hide'));
   empty.style.display='none';
+  updateGroups();
   updateStats();
 }
 function search(){
@@ -1151,6 +1224,7 @@ function search(){
     });
     s.classList.toggle('active', allMode || (matches.length>0 && (s.id===current || !!word)));
   });
+  updateGroups();
   empty.style.display=word && visible===0?'block':'none';
   document.getElementById('countText').textContent=visible+'件表示';
   document.getElementById('progressBar').style.width=Math.min(100,Math.max(8,visible/cards.length*100))+'%';
@@ -1177,6 +1251,7 @@ function showFavorites(){
   tabs.forEach(b=>b.classList.add('active'));
   cards.forEach((c,i)=>c.classList.toggle('hide',!favorites.includes(i)));
   q.value='';
+  updateGroups();
   empty.style.display=favorites.length?'none':'block';
   updateStats();
 }
@@ -1185,6 +1260,9 @@ function showToast(msg){
   clearTimeout(showToast.t); showToast.t=setTimeout(()=>toast.classList.remove('show'),1300);
 }
 tabs.forEach(b=>b.addEventListener('click',()=>show(b.dataset.id)));
+document.querySelectorAll('[data-group]').forEach(b=>b.addEventListener('click',()=>{
+  document.getElementById(b.dataset.group)?.scrollIntoView({behavior:'smooth',block:'start'});
+}));
 q.addEventListener('input',()=>{allMode=false;search()});
 document.getElementById('allBtn').onclick=showAll;
 document.getElementById('randomBtn').onclick=randomCard;
@@ -1229,7 +1307,7 @@ updateFavUI(); show('JavaScript');
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.addEventListener("message", (event) => {
     if (event.data && event.data.type === "version-check" && event.ports && event.ports[0]) {
-      event.ports[0].postMessage("v6");
+      event.ports[0].postMessage("v7");
     }
   });
   window.addEventListener("load", () => {
