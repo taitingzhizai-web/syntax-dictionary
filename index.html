@@ -320,7 +320,152 @@ import App from './App';</code></pre>
   <div class="card-head"><h3>!</h3></div>
   <p>true / falseを反転する</p>
   <pre><code>if (!isLogin) {}</code></pre>
-</article></section>
+</article>
+<article class="card" data-search="switch 値によって処理を分ける switch (color) { case 'red': console.log('赤'); break; default: console.log('その他'); }">
+  <div class="card-head"><h3>switch</h3></div>
+  <p>値によって処理を分ける</p>
+  <pre><code>switch (color) {
+  case 'red':
+    console.log('赤');
+    break;
+  default:
+    console.log('その他');
+}</code></pre>
+</article>
+<article class="card" data-search="while 条件がtrueの間繰り返す let count = 0; while (count &lt; 3) { console.log(count); count++; }">
+  <div class="card-head"><h3>while</h3></div>
+  <p>条件がtrueの間繰り返す</p>
+  <pre><code>let count = 0;
+while (count &lt; 3) {
+  console.log(count);
+  count++;
+}</code></pre>
+</article>
+<article class="card" data-search="break / continue 繰り返しを中断する・1回分を飛ばす for (const n of nums) { if (n === 0) continue; if (n &gt; 10) break; }">
+  <div class="card-head"><h3>break / continue</h3></div>
+  <p>繰り返しを中断する・1回分を飛ばす</p>
+  <pre><code>for (const n of nums) {
+  if (n === 0) continue;
+  if (n &gt; 10) break;
+}</code></pre>
+</article>
+<article class="card" data-search="三項演算子 条件で2つの値を短く切り替える const label = score &gt;= 60 ? '合格' : '不合格';">
+  <div class="card-head"><h3>三項演算子</h3></div>
+  <p>条件で2つの値を短く切り替える</p>
+  <pre><code>const label = score &gt;= 60 ? '合格' : '不合格';</code></pre>
+</article>
+<article class="card" data-search="テンプレートリテラル 文字列の中に変数を埋め込む const text = `こんにちは、${name}`;">
+  <div class="card-head"><h3>テンプレートリテラル</h3></div>
+  <p>文字列の中に変数を埋め込む</p>
+  <pre><code>const text = `こんにちは、${name}`;</code></pre>
+</article>
+<article class="card" data-search="オプショナルチェーン ?. 途中がnullでもエラーにせず値を取り出す const city = user?.address?.city;">
+  <div class="card-head"><h3>オプショナルチェーン ?.</h3></div>
+  <p>途中がnullでもエラーにせず値を取り出す</p>
+  <pre><code>const city = user?.address?.city;</code></pre>
+</article>
+<article class="card" data-search="?? nullかundefinedのときだけ代わりの値を使う const name = input ?? '名無し';">
+  <div class="card-head"><h3>??</h3></div>
+  <p>nullかundefinedのときだけ代わりの値を使う</p>
+  <pre><code>const name = input ?? '名無し';</code></pre>
+</article>
+<article class="card" data-search="typeof 値の型を文字列で調べる typeof age">
+  <div class="card-head"><h3>typeof</h3></div>
+  <p>値の型を文字列で調べる</p>
+  <pre><code>typeof age</code></pre>
+</article>
+<article class="card" data-search="push() 配列の末尾に値を追加する fruits.push('みかん');">
+  <div class="card-head"><h3>push()</h3></div>
+  <p>配列の末尾に値を追加する</p>
+  <pre><code>fruits.push('みかん');</code></pre>
+</article>
+<article class="card" data-search="includes() 配列に値が含まれるか調べる nums.includes(2)">
+  <div class="card-head"><h3>includes()</h3></div>
+  <p>配列に値が含まれるか調べる</p>
+  <pre><code>nums.includes(2)</code></pre>
+</article>
+<article class="card" data-search="length 配列や文字列の長さを得る items.length">
+  <div class="card-head"><h3>length</h3></div>
+  <p>配列や文字列の長さを得る</p>
+  <pre><code>items.length</code></pre>
+</article>
+<article class="card" data-search="reduce() 配列を1つの値にまとめる const total = nums.reduce((sum, n) =&gt; sum + n, 0);">
+  <div class="card-head"><h3>reduce()</h3></div>
+  <p>配列を1つの値にまとめる</p>
+  <pre><code>const total = nums.reduce((sum, n) =&gt; sum + n, 0);</code></pre>
+</article>
+<article class="card" data-search="slice() 配列の一部を取り出して新しい配列を作る items.slice(0, 2)">
+  <div class="card-head"><h3>slice()</h3></div>
+  <p>配列の一部を取り出して新しい配列を作る</p>
+  <pre><code>items.slice(0, 2)</code></pre>
+</article>
+<article class="card" data-search="setTimeout() 指定した時間のあとで処理を実行する setTimeout(() =&gt; { console.log('後で実行'); }, 1000);">
+  <div class="card-head"><h3>setTimeout()</h3></div>
+  <p>指定した時間のあとで処理を実行する</p>
+  <pre><code>setTimeout(() =&gt; {
+  console.log('後で実行');
+}, 1000);</code></pre>
+</article>
+<article class="card" data-search="Promise 非同期処理の結果を表すオブジェクト const result = await Promise.resolve('OK');">
+  <div class="card-head"><h3>Promise</h3></div>
+  <p>非同期処理の結果を表すオブジェクト</p>
+  <pre><code>const result = await Promise.resolve('OK');</code></pre>
+</article>
+<article class="card" data-search="addEventListener() クリックなどの出来事に処理を登録する button.addEventListener('click', () =&gt; { console.log('クリック'); });">
+  <div class="card-head"><h3>addEventListener()</h3></div>
+  <p>クリックなどの出来事に処理を登録する</p>
+  <pre><code>button.addEventListener('click', () =&gt; {
+  console.log('クリック');
+});</code></pre>
+</article>
+<article class="card" data-search="querySelector() CSSの書き方で要素を1つ取得する const el = document.querySelector('.card');">
+  <div class="card-head"><h3>querySelector()</h3></div>
+  <p>CSSの書き方で要素を1つ取得する</p>
+  <pre><code>const el = document.querySelector('.card');</code></pre>
+</article>
+<article class="card" data-search="class データと処理をまとめた設計図を作る class User { constructor(name) { this.name = name; } }">
+  <div class="card-head"><h3>class</h3></div>
+  <p>データと処理をまとめた設計図を作る</p>
+  <pre><code>class User {
+  constructor(name) {
+    this.name = name;
+  }
+}</code></pre>
+</article>
+<article class="card" data-search="デフォルト引数 引数が渡されないときの初期値を決める function greet(name = 'ゲスト') { return name; }">
+  <div class="card-head"><h3>デフォルト引数</h3></div>
+  <p>引数が渡されないときの初期値を決める</p>
+  <pre><code>function greet(name = 'ゲスト') {
+  return name;
+}</code></pre>
+</article>
+<article class="card" data-search="localStorage ブラウザに文字列を保存する localStorage.setItem('name', 'Tomo'); const name = localStorage.getItem('name');">
+  <div class="card-head"><h3>localStorage</h3></div>
+  <p>ブラウザに文字列を保存する</p>
+  <pre><code>localStorage.setItem('name', 'Tomo');
+const name = localStorage.getItem('name');</code></pre>
+</article>
+<article class="card" data-search="throw 自分でエラーを発生させる throw new Error('失敗しました');">
+  <div class="card-head"><h3>throw</h3></div>
+  <p>自分でエラーを発生させる</p>
+  <pre><code>throw new Error('失敗しました');</code></pre>
+</article>
+<article class="card" data-search="Object.keys() オブジェクトのキーを配列にする Object.keys(user)">
+  <div class="card-head"><h3>Object.keys()</h3></div>
+  <p>オブジェクトのキーを配列にする</p>
+  <pre><code>Object.keys(user)</code></pre>
+</article>
+<article class="card" data-search="parseInt() 文字列を整数に変換する parseInt('18', 10)">
+  <div class="card-head"><h3>parseInt()</h3></div>
+  <p>文字列を整数に変換する</p>
+  <pre><code>parseInt('18', 10)</code></pre>
+</article>
+<article class="card" data-search="コメント プログラムの説明を残す // これはコメント">
+  <div class="card-head"><h3>コメント</h3></div>
+  <p>プログラムの説明を残す</p>
+  <pre><code>// これはコメント</code></pre>
+</article>
+</section>
 <section id="React"><article class="card" data-search="JSX JavaScriptの中にHTMLのような記述を書く return <h1>Hello React</h1>;">
   <div class="card-head"><h3>JSX</h3></div>
   <p>JavaScriptの中にHTMLのような記述を書く</p>
@@ -401,7 +546,104 @@ import App from './App';</code></pre>
   <div class="card-head"><h3>React Router</h3></div>
   <p>ページを切り替えるための仕組み</p>
   <pre><code><Route path='/users' element={<Users />} /></code></pre>
-</article></section>
+</article>
+<article class="card" data-search="useRef 再描画せずに値やDOM要素を覚えておく const inputRef = useRef(null);">
+  <div class="card-head"><h3>useRef</h3></div>
+  <p>再描画せずに値やDOM要素を覚えておく</p>
+  <pre><code>const inputRef = useRef(null);</code></pre>
+</article>
+<article class="card" data-search="useContext 離れたコンポーネントへ値を渡す const user = useContext(UserContext);">
+  <div class="card-head"><h3>useContext</h3></div>
+  <p>離れたコンポーネントへ値を渡す</p>
+  <pre><code>const user = useContext(UserContext);</code></pre>
+</article>
+<article class="card" data-search="フラグメント 余分な要素を作らず複数の要素をまとめる &lt;&gt;&lt;p&gt;A&lt;/p&gt;&lt;p&gt;B&lt;/p&gt;&lt;/&gt;">
+  <div class="card-head"><h3>フラグメント</h3></div>
+  <p>余分な要素を作らず複数の要素をまとめる</p>
+  <pre><code>&lt;&gt;
+  &lt;p&gt;A&lt;/p&gt;
+  &lt;p&gt;B&lt;/p&gt;
+&lt;/&gt;</code></pre>
+</article>
+<article class="card" data-search="children タグの内側に書かれた中身を受け取る function Card({ children }) { return &lt;div&gt;{children}&lt;/div&gt;; }">
+  <div class="card-head"><h3>children</h3></div>
+  <p>タグの内側に書かれた中身を受け取る</p>
+  <pre><code>function Card({ children }) {
+  return &lt;div&gt;{children}&lt;/div&gt;;
+}</code></pre>
+</article>
+<article class="card" data-search="useMemo 計算結果を覚えて無駄な再計算を減らす const total = useMemo(() =&gt; price * count, [price, count]);">
+  <div class="card-head"><h3>useMemo</h3></div>
+  <p>計算結果を覚えて無駄な再計算を減らす</p>
+  <pre><code>const total = useMemo(() =&gt; price * count, [price, count]);</code></pre>
+</article>
+<article class="card" data-search="useCallback 関数を覚えて毎回作り直さない const onAdd = useCallback(() =&gt; setCount(c =&gt; c + 1), []);">
+  <div class="card-head"><h3>useCallback</h3></div>
+  <p>関数を覚えて毎回作り直さない</p>
+  <pre><code>const onAdd = useCallback(() =&gt; setCount(c =&gt; c + 1), []);</code></pre>
+</article>
+<article class="card" data-search="className JSXでCSSのクラスを指定する &lt;p className='title'&gt;題名&lt;/p&gt;">
+  <div class="card-head"><h3>className</h3></div>
+  <p>JSXでCSSのクラスを指定する</p>
+  <pre><code>&lt;p className="title"&gt;題名&lt;/p&gt;</code></pre>
+</article>
+<article class="card" data-search="style JSXで見た目を直接指定する &lt;p style={{ color: 'red' }}&gt;赤&lt;/p&gt;">
+  <div class="card-head"><h3>style</h3></div>
+  <p>JSXで見た目を直接指定する</p>
+  <pre><code>&lt;p style={{ color: 'red' }}&gt;赤&lt;/p&gt;</code></pre>
+</article>
+<article class="card" data-search="関数型の更新 直前のstateを使って次の値を決める setCount(count =&gt; count + 1);">
+  <div class="card-head"><h3>関数型の更新</h3></div>
+  <p>直前のstateを使って次の値を決める</p>
+  <pre><code>setCount(count =&gt; count + 1);</code></pre>
+</article>
+<article class="card" data-search="useEffectの後始末 画面から消えるときにタイマーなどを止める useEffect(() =&gt; { const id = setInterval(tick, 1000); return () =&gt; clearInterval(id); }, []);">
+  <div class="card-head"><h3>useEffectの後始末</h3></div>
+  <p>画面から消えるときにタイマーなどを止める</p>
+  <pre><code>useEffect(() =&gt; {
+  const id = setInterval(tick, 1000);
+  return () =&gt; clearInterval(id);
+}, []);</code></pre>
+</article>
+<article class="card" data-search="&amp;&amp; で表示 条件がtrueのときだけ要素を出す {isLogin &amp;&amp; &lt;p&gt;ログイン中&lt;/p&gt;}">
+  <div class="card-head"><h3>&amp;&amp; で表示</h3></div>
+  <p>条件がtrueのときだけ要素を出す</p>
+  <pre><code>{isLogin &amp;&amp; &lt;p&gt;ログイン中&lt;/p&gt;}</code></pre>
+</article>
+<article class="card" data-search="カスタムフック useで始まる自分用の関数を作る function useToggle() { const [on, setOn] = useState(false); return [on, () =&gt; setOn(v =&gt; !v)]; }">
+  <div class="card-head"><h3>カスタムフック</h3></div>
+  <p>useで始まる自分用の関数を作る</p>
+  <pre><code>function useToggle() {
+  const [on, setOn] = useState(false);
+  return [on, () =&gt; setOn(v =&gt; !v)];
+}</code></pre>
+</article>
+<article class="card" data-search="useReducer 複雑なstateの更新を関数にまとめる const [state, dispatch] = useReducer(reducer, { count: 0 });">
+  <div class="card-head"><h3>useReducer</h3></div>
+  <p>複雑なstateの更新を関数にまとめる</p>
+  <pre><code>const [state, dispatch] = useReducer(reducer, { count: 0 });</code></pre>
+</article>
+<article class="card" data-search="propsの初期値 渡されなかったときの値を決める function User({ name = '名無し' }) { return name; }">
+  <div class="card-head"><h3>propsの初期値</h3></div>
+  <p>渡されなかったときの値を決める</p>
+  <pre><code>function User({ name = '名無し' }) {
+  return name;
+}</code></pre>
+</article>
+<article class="card" data-search="複数のstate 役割ごとにuseStateを分ける const [name, setName] = useState(''); const [age, setAge] = useState(0);">
+  <div class="card-head"><h3>複数のstate</h3></div>
+  <p>役割ごとにuseStateを分ける</p>
+  <pre><code>const [name, setName] = useState('');
+const [age, setAge] = useState(0);</code></pre>
+</article>
+<article class="card" data-search="e.target イベントが起きた要素から値を取る function onChange(e) { setName(e.target.value); }">
+  <div class="card-head"><h3>e.target</h3></div>
+  <p>イベントが起きた要素から値を取る</p>
+  <pre><code>function onChange(e) {
+  setName(e.target.value);
+}</code></pre>
+</article>
+</section>
 <section id="Node.js---Express"><article class="card" data-search="Node.js JavaScriptをブラウザ以外で動かす実行環境 node app.js">
   <div class="card-head"><h3>Node.js</h3></div>
   <p>JavaScriptをブラウザ以外で動かす実行環境</p>
@@ -504,7 +746,110 @@ import App from './App';</code></pre>
   <div class="card-head"><h3>DB接続</h3></div>
   <p>データベースへ接続してデータを扱う</p>
   <pre><code>const connection = await db.connect();</code></pre>
-</article></section>
+</article>
+<article class="card" data-search="app.put() 既存データの更新リクエストを処理する app.put('/users/:id', (req, res) =&gt; { res.json(req.body); });">
+  <div class="card-head"><h3>app.put()</h3></div>
+  <p>既存データの更新リクエストを処理する</p>
+  <pre><code>app.put('/users/:id', (req, res) =&gt; {
+  res.json(req.body);
+});</code></pre>
+</article>
+<article class="card" data-search="app.delete() データの削除リクエストを処理する app.delete('/users/:id', (req, res) =&gt; { res.json({ message: '削除しました' }); });">
+  <div class="card-head"><h3>app.delete()</h3></div>
+  <p>データの削除リクエストを処理する</p>
+  <pre><code>app.delete('/users/:id', (req, res) =&gt; {
+  res.json({ message: '削除しました' });
+});</code></pre>
+</article>
+<article class="card" data-search="express.json() JSONのリクエスト本文をオブジェクトにする app.use(express.json());">
+  <div class="card-head"><h3>express.json()</h3></div>
+  <p>JSONのリクエスト本文をオブジェクトにする</p>
+  <pre><code>app.use(express.json());</code></pre>
+</article>
+<article class="card" data-search="express.static() HTMLや画像などの静的ファイルを公開する app.use(express.static('public'));">
+  <div class="card-head"><h3>express.static()</h3></div>
+  <p>HTMLや画像などの静的ファイルを公開する</p>
+  <pre><code>app.use(express.static('public'));</code></pre>
+</article>
+<article class="card" data-search="process.env 環境変数を読み取る const port = process.env.PORT || 3000;">
+  <div class="card-head"><h3>process.env</h3></div>
+  <p>環境変数を読み取る</p>
+  <pre><code>const port = process.env.PORT || 3000;</code></pre>
+</article>
+<article class="card" data-search="dotenv .envファイルの値を環境変数として読み込む import 'dotenv/config';">
+  <div class="card-head"><h3>dotenv</h3></div>
+  <p>.envファイルの値を環境変数として読み込む</p>
+  <pre><code>import 'dotenv/config';</code></pre>
+</article>
+<article class="card" data-search="res.send() 文字列やHTMLをレスポンスとして返す res.send('OK');">
+  <div class="card-head"><h3>res.send()</h3></div>
+  <p>文字列やHTMLをレスポンスとして返す</p>
+  <pre><code>res.send('OK');</code></pre>
+</article>
+<article class="card" data-search="next() 次のミドルウェアへ処理を渡す next();">
+  <div class="card-head"><h3>next()</h3></div>
+  <p>次のミドルウェアへ処理を渡す</p>
+  <pre><code>next();</code></pre>
+</article>
+<article class="card" data-search="エラー処理 サーバー側の例外をまとめて返す app.use((err, req, res, next) =&gt; { res.status(500).json({ message: err.message }); });">
+  <div class="card-head"><h3>エラー処理</h3></div>
+  <p>サーバー側の例外をまとめて返す</p>
+  <pre><code>app.use((err, req, res, next) =&gt; {
+  res.status(500).json({ message: err.message });
+});</code></pre>
+</article>
+<article class="card" data-search="nodemon ファイルを保存するとサーバーを再起動する npx nodemon app.js">
+  <div class="card-head"><h3>nodemon</h3></div>
+  <p>ファイルを保存するとサーバーを再起動する</p>
+  <pre><code>npx nodemon app.js</code></pre>
+</article>
+<article class="card" data-search="package.json プロジェクトの情報とコマンドを書く start node app.js">
+  <div class="card-head"><h3>package.json</h3></div>
+  <p>プロジェクトの情報とコマンドを書く</p>
+  <pre><code>"scripts": {
+  "start": "node app.js"
+}</code></pre>
+</article>
+<article class="card" data-search="__dirname 実行中ファイルがあるフォルダのパス path.dirname(fileURLToPath(import.meta.url))">
+  <div class="card-head"><h3>__dirname</h3></div>
+  <p>実行中ファイルがあるフォルダのパス</p>
+  <pre><code>path.dirname(fileURLToPath(import.meta.url))</code></pre>
+</article>
+<article class="card" data-search="req.headers リクエストのヘッダーを取得する const token = req.headers.authorization;">
+  <div class="card-head"><h3>req.headers</h3></div>
+  <p>リクエストのヘッダーを取得する</p>
+  <pre><code>const token = req.headers.authorization;</code></pre>
+</article>
+<article class="card" data-search="router.get() 分割したRouterにGET処理を書く router.get('/users', (req, res) =&gt; { res.json(users); });">
+  <div class="card-head"><h3>router.get()</h3></div>
+  <p>分割したRouterにGET処理を書く</p>
+  <pre><code>router.get('/users', (req, res) =&gt; {
+  res.json(users);
+});</code></pre>
+</article>
+<article class="card" data-search="ステータスコード 処理結果を数字で伝える 200 成功 201 作成 400 不正 404 見つからない 500 サーバーエラー">
+  <div class="card-head"><h3>ステータスコード</h3></div>
+  <p>処理結果を数字で伝える</p>
+  <pre><code>200 成功
+201 作成
+400 リクエストが不正
+404 見つからない
+500 サーバーエラー</code></pre>
+</article>
+<article class="card" data-search="cors 別のサイトからのAPI利用を許可する import cors from 'cors'; app.use(cors());">
+  <div class="card-head"><h3>cors</h3></div>
+  <p>別のサイトからのAPI利用を許可する</p>
+  <pre><code>import cors from 'cors';
+app.use(cors());</code></pre>
+</article>
+<article class="card" data-search="app.patch() データの一部だけを更新するリクエストを処理する app.patch('/users/:id', (req, res) =&gt; { res.json(req.body); });">
+  <div class="card-head"><h3>app.patch()</h3></div>
+  <p>データの一部だけを更新するリクエストを処理する</p>
+  <pre><code>app.patch('/users/:id', (req, res) =&gt; {
+  res.json(req.body);
+});</code></pre>
+</article>
+</section>
 <section id="Python"><article class="card" data-search="変数 値を名前付きで保存する name = 'Tomo'
 age = 18">
   <div class="card-head"><h3>変数</h3></div>
@@ -599,7 +944,136 @@ except ValueError:
   <p>ファイルを開く</p>
   <pre><code>with open('data.txt', 'r', encoding='utf-8') as f:
     text = f.read()</code></pre>
-</article></section>
+</article>
+<article class="card" data-search="コメント プログラムの説明を残す # これはコメント">
+  <div class="card-head"><h3>コメント</h3></div>
+  <p>プログラムの説明を残す</p>
+  <pre><code># これはコメント</code></pre>
+</article>
+<article class="card" data-search="データ型 整数・小数・文字列・真偽値 age = 18 price = 1.5 name = 'Tomo' ok = True">
+  <div class="card-head"><h3>データ型</h3></div>
+  <p>整数・小数・文字列・真偽値を扱う</p>
+  <pre><code>age = 18
+price = 1.5
+name = 'Tomo'
+ok = True</code></pre>
+</article>
+<article class="card" data-search="f文字列 文字列の中に変数を埋め込む text = f'こんにちは、{name}'">
+  <div class="card-head"><h3>f文字列</h3></div>
+  <p>文字列の中に変数を埋め込む</p>
+  <pre><code>text = f'こんにちは、{name}'</code></pre>
+</article>
+<article class="card" data-search="len() リストや文字列の長さを得る len(fruits)">
+  <div class="card-head"><h3>len()</h3></div>
+  <p>リストや文字列の長さを得る</p>
+  <pre><code>len(fruits)</code></pre>
+</article>
+<article class="card" data-search="append() リストの末尾に値を追加する fruits.append('みかん')">
+  <div class="card-head"><h3>append()</h3></div>
+  <p>リストの末尾に値を追加する</p>
+  <pre><code>fruits.append('みかん')</code></pre>
+</article>
+<article class="card" data-search="range() 連続した整数を作る for i in range(1, 4): print(i)">
+  <div class="card-head"><h3>range()</h3></div>
+  <p>連続した整数を作る</p>
+  <pre><code>for i in range(1, 4):
+    print(i)</code></pre>
+</article>
+<article class="card" data-search="in リストや文字列に値が含まれるか調べる if 'りんご' in fruits:">
+  <div class="card-head"><h3>in</h3></div>
+  <p>リストや文字列に値が含まれるか調べる</p>
+  <pre><code>if 'りんご' in fruits:
+    print('あります')</code></pre>
+</article>
+<article class="card" data-search="スライス リストや文字列の一部を取り出す items[0:2]">
+  <div class="card-head"><h3>スライス</h3></div>
+  <p>リストや文字列の一部を取り出す</p>
+  <pre><code>items[0:2]</code></pre>
+</article>
+<article class="card" data-search="リスト内包表記 リストを短く作る doubled = [n * 2 for n in nums]">
+  <div class="card-head"><h3>リスト内包表記</h3></div>
+  <p>リストを短く作る</p>
+  <pre><code>doubled = [n * 2 for n in nums]</code></pre>
+</article>
+<article class="card" data-search="enumerate() 番号と値を一緒に取り出す for i, item in enumerate(items):">
+  <div class="card-head"><h3>enumerate()</h3></div>
+  <p>番号と値を一緒に取り出す</p>
+  <pre><code>for i, item in enumerate(items):
+    print(i, item)</code></pre>
+</article>
+<article class="card" data-search="タプル () 中身を変えない並びを作る point = (10, 20)">
+  <div class="card-head"><h3>タプル ()</h3></div>
+  <p>中身を変えない並びを作る</p>
+  <pre><code>point = (10, 20)</code></pre>
+</article>
+<article class="card" data-search="セット {} 重複しない値の集まりを作る colors = {'red', 'blue'}">
+  <div class="card-head"><h3>セット {}</h3></div>
+  <p>重複しない値の集まりを作る</p>
+  <pre><code>colors = {'red', 'blue'}</code></pre>
+</article>
+<article class="card" data-search="None 値が無いことを表す name = None">
+  <div class="card-head"><h3>None</h3></div>
+  <p>値が無いことを表す</p>
+  <pre><code>name = None</code></pre>
+</article>
+<article class="card" data-search="and / or / not 条件を組み合わせる if age &gt;= 18 and has_id:">
+  <div class="card-head"><h3>and / or / not</h3></div>
+  <p>条件を組み合わせる</p>
+  <pre><code>if age &gt;= 18 and has_id:
+    print('OK')</code></pre>
+</article>
+<article class="card" data-search="break / continue 繰り返しを中断する・1回分を飛ばす for n in nums: if n == 0: continue">
+  <div class="card-head"><h3>break / continue</h3></div>
+  <p>繰り返しを中断する・1回分を飛ばす</p>
+  <pre><code>for n in nums:
+    if n == 0:
+        continue
+    print(n)</code></pre>
+</article>
+<article class="card" data-search="デフォルト引数 引数が渡されないときの初期値を決める def greet(name='ゲスト'): return name">
+  <div class="card-head"><h3>デフォルト引数</h3></div>
+  <p>引数が渡されないときの初期値を決める</p>
+  <pre><code>def greet(name='ゲスト'):
+    return name</code></pre>
+</article>
+<article class="card" data-search="lambda 短い関数をその場で作る double = lambda n: n * 2">
+  <div class="card-head"><h3>lambda</h3></div>
+  <p>短い関数をその場で作る</p>
+  <pre><code>double = lambda n: n * 2</code></pre>
+</article>
+<article class="card" data-search="raise 自分でエラーを発生させる raise ValueError('数値が不正です')">
+  <div class="card-head"><h3>raise</h3></div>
+  <p>自分でエラーを発生させる</p>
+  <pre><code>raise ValueError('数値が不正です')</code></pre>
+</article>
+<article class="card" data-search="from import モジュールの一部だけを読み込む from math import sqrt">
+  <div class="card-head"><h3>from import</h3></div>
+  <p>モジュールの一部だけを読み込む</p>
+  <pre><code>from math import sqrt</code></pre>
+</article>
+<article class="card" data-search="辞書をループ キーと値を1組ずつ取り出す for key, value in user.items():">
+  <div class="card-head"><h3>辞書をループ</h3></div>
+  <p>キーと値を1組ずつ取り出す</p>
+  <pre><code>for key, value in user.items():
+    print(key, value)</code></pre>
+</article>
+<article class="card" data-search="int() / str() 整数と文字列を変換する age = int('18') text = str(18)">
+  <div class="card-head"><h3>int() / str()</h3></div>
+  <p>整数と文字列を変換する</p>
+  <pre><code>age = int('18')
+text = str(18)</code></pre>
+</article>
+<article class="card" data-search="get() 辞書にキーが無くてもエラーにせず取り出す user.get('name', '名無し')">
+  <div class="card-head"><h3>get()</h3></div>
+  <p>辞書にキーが無くてもエラーにせず取り出す</p>
+  <pre><code>user.get('name', '名無し')</code></pre>
+</article>
+<article class="card" data-search="pip 外部パッケージをインストールする pip install requests">
+  <div class="card-head"><h3>pip</h3></div>
+  <p>外部パッケージをインストールする</p>
+  <pre><code>pip install requests</code></pre>
+</article>
+</section>
   </div>
   <div class="empty" id="empty">🔎<br>見つかりませんでした。<br>別の言葉で検索してみよう。</div>
 </main>
@@ -734,9 +1208,16 @@ const today=[
   ['JavaScript','const / let','変数の基本'],
   ['JavaScript','if / else','条件分岐'],
   ['JavaScript','map()','配列処理・Reactで重要'],
+  ['JavaScript','テンプレートリテラル','文字列へ変数を埋め込む'],
+  ['JavaScript','addEventListener()','クリックなどの処理'],
   ['React','useState','状態管理'],
+  ['React','useEffect','表示後の処理'],
+  ['React','props','親から子へデータを渡す'],
   ['Node.js---Express','app.get()','APIのGET処理'],
-  ['Python','def','関数の基本']
+  ['Node.js---Express','express.json()','JSONを受け取る'],
+  ['Python','def','関数の基本'],
+  ['Python','f文字列','文字列へ変数を埋め込む'],
+  ['Python','リスト内包表記','リストを短く作る']
 ];
 const day=today[new Date().getDate()%today.length];
 document.getElementById('todayText').textContent=day[0].replace('Node.js---Express','Node.js / Express')+'「'+day[1]+'」｜'+day[2];
@@ -748,7 +1229,7 @@ updateFavUI(); show('JavaScript');
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.addEventListener("message", (event) => {
     if (event.data && event.data.type === "version-check" && event.ports && event.ports[0]) {
-      event.ports[0].postMessage("v5");
+      event.ports[0].postMessage("v6");
     }
   });
   window.addEventListener("load", () => {

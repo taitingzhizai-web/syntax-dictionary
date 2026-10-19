@@ -1,4 +1,4 @@
-const CACHE = "syntax-dictionary-v5";
+const CACHE = "syntax-dictionary-v6";
 
 const APP_SHELL = [
   "./",
@@ -34,7 +34,7 @@ self.addEventListener("activate", (event) => {
       const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
       await Promise.all(windows.map(async (client) => {
         const current = await askVersion(client);
-        if (current === "v5") return;
+        if (current === "v6") return;
         if (client.navigate) {
           try {
             await client.navigate(client.url);
@@ -80,7 +80,7 @@ self.addEventListener("fetch", (event) => {
 
 async function networkFirst(request, isHTML) {
   try {
-    const response = await fetch(request);
+    const response = await fetch(request, isHTML ? { cache: "no-cache" } : {});
     if (response && response.ok && new URL(request.url).origin === self.location.origin) {
       const cache = await caches.open(CACHE);
       await cache.put(request, response.clone());
